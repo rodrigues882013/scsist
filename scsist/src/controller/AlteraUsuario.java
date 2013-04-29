@@ -1,25 +1,21 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import communication.Client;
 
 /**
- * Servlet implementation class ChangeState
+ * Servlet implementation class AlteraUsuario
  */
-public class ChangeState extends HttpServlet {
+public class AlteraUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChangeState() {
+    public AlteraUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,31 +24,14 @@ public class ChangeState extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			HttpSession session = request.getSession();
-			//String a = (String) request.getParameter("id");
-			
-			String b = (String) request.getParameter("state");
-			
-			//if (DevicesDB.update(Integer.parseInt(a))){
-				Client client = Client.getClient();
-				Integer state = client.changeState(b);
-				//client.closeClient();
-				//System.out.println(state);
-				session.setAttribute("state", state);
-				response.sendRedirect("index.jsp");
-			//}
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 	}
 
 }

@@ -15,6 +15,55 @@
 		<servlet-name>ChangeState</servlet-name>
 		<servlet-class>controller.ChangeState</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CadastraUsuario</display-name>
+		<servlet-name>CadastraUsuario</servlet-name>
+		<servlet-class>controller.CadastraUsuario</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ControleAcesso</display-name>
+		<servlet-name>ControleAcesso</servlet-name>
+		<servlet-class>controller.ControleAcesso</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ListaUsuario</display-name>
+		<servlet-name>ListaUsuario</servlet-name>
+		<servlet-class>controller.ListaUsuario</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ExcluiUsuario</display-name>
+		<servlet-name>ExcluiUsuario</servlet-name>
+		<servlet-class>controller.ExcluiUsuario</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AlteraUsuario</display-name>
+		<servlet-name>AlteraUsuario</servlet-name>
+		<servlet-class>controller.AlteraUsuario</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GeraDemonstrativo</display-name>
+		<servlet-name>GeraDemonstrativo</servlet-name>
+		<servlet-class>controller.GeraDemonstrativo</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GeraEstatistica</display-name>
+		<servlet-name>GeraEstatistica</servlet-name>
+		<servlet-class>controller.GeraEstatistica</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>teste</servlet-name>
 		<url-pattern>/teste</url-pattern>
@@ -22,6 +71,34 @@
 	<servlet-mapping>
 		<servlet-name>ChangeState</servlet-name>
 		<url-pattern>/ChangeState</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CadastraUsuario</servlet-name>
+		<url-pattern>/CadastraUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ControleAcesso</servlet-name>
+		<url-pattern>/ControleAcesso</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListaUsuario</servlet-name>
+		<url-pattern>/ListaUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ExcluiUsuario</servlet-name>
+		<url-pattern>/ExcluiUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AlteraUsuario</servlet-name>
+		<url-pattern>/AlteraUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GeraDemonstrativo</servlet-name>
+		<url-pattern>/GeraDemonstrativo</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GeraEstatistica</servlet-name>
+		<url-pattern>/GeraEstatistica</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
