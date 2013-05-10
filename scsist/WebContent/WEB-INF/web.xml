@@ -64,6 +64,13 @@
 		<servlet-name>GeraEstatistica</servlet-name>
 		<servlet-class>controller.GeraEstatistica</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CadastraDispositivo</display-name>
+		<servlet-name>CadastraDispositivo</servlet-name>
+		<servlet-class>controller.CadastraDispositivo</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>teste</servlet-name>
 		<url-pattern>/teste</url-pattern>
@@ -99,6 +106,10 @@
 	<servlet-mapping>
 		<servlet-name>GeraEstatistica</servlet-name>
 		<url-pattern>/GeraEstatistica</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CadastraDispositivo</servlet-name>
+		<url-pattern>/CadastraDispositivo</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
