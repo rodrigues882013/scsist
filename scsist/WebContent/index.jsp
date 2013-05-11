@@ -46,12 +46,15 @@
 		<div id="geral">
 
 			<div id="corpo">
-
+			
 				<div id="menuc">
-
-					<strong>Sistema de Controle das Salas do IST-Rio/FAETERJ</strong>
 					
+				
+					<h1></h1><strong>Bem vindo!!</strong></h1>
+					<div id="logo"></div>
 				</div>
+			
+				
 
 			</div>
 		
