@@ -1,12 +1,87 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	
-</body>
+	<head>
+
+		<title>ISTRio</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link type="text/css" rel="stylesheet" media="all" href="styles/style.css"/>
+		<script language="JavaScript" src="scripts/jquery.js" type="text/javascript"></script>
+        <script language="JavaScript" src="scripts/jquery.validate.js" type="text/javascript"></script>
+        <script type="text/javascript">
+			$(document).ready( function(){
+				$("#form").validate({
+					rules:{
+						username:{
+							required: true
+						},
+						passwd:{
+							required: true
+						}
+						
+					},
+					messages:{
+						username:{
+							required: "Digite o nome de usuário"
+						},
+						passwd:{
+							required: "Digite sua senha"
+						}
+					}
+				});
+			});
+		</script>
+		<style type="text/css">
+            * { font-family: Verdana; font-size: 96%; }
+            label { display: block; margin-top: 0px; }
+            label.error { float: none; color: red; margin: 0 .5em 0 0; vertical-align: top; font-size: 12px; padding-bottom: 4px; }
+            
+          
+        </style>
+
+	</head>
+
+
+		<div id="geral">
+
+			<div id="corpo">
+
+				<div id="menuc">
+
+					<strong>Sistema de Controle das Salas do IST-Rio/FAETERJ</strong>
+					
+				</div>
+
+			</div>
+		
+			<div id="conteudo">
+				<div class="content">
+					<div id="box">
+						<div class="elements">
+							<div class="avatar"></div>
+							<form action="pages/admin.html" method="post" name="form" id="form">
+								<input type="text" id="login" name="login" class="login" placeholder="Usuário" />
+								<input type="password" id="passwd" name="passwd" class="password" placeholder="•••••••••" />
+								<div class="forget">
+									<a href="#">Esqueceu sua senha, click aqui</a>
+								</div>
+								<div class="checkbox">
+									<input id="check" name="checkbox" type="checkbox" value="1" />
+									<label for="check">Lembrar senha?</label>
+								</div>
+								<div class="remember">
+									Lembrar?
+								</div>
+								<input type="submit" name="submit" class="submit" value="Entrar"/>
+							</form>
+						</div>
+					</div>
+					<div class="signup">
+						Ainda não é cadastrado <a href="#">contacte</a> o gestor
+					</div>
+				</div>
+			</div>
+			</div>
+	</body>
 </html>
