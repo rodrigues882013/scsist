@@ -5,7 +5,6 @@ public class Dispositivo {
 	private Integer numero;
 	private Sala sala;
 	
-	
 	public Dispositivo() {
 		
 	}

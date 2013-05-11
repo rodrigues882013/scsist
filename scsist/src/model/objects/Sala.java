@@ -6,18 +6,24 @@ public class Sala {
 	private Integer numero;
 	private String ip;
 	private ArrayList<Dispositivo> dispositivos;
-	private ArrayList<Usuario> usuarios;
+	private Usuario usuario;
+	private String imagem; //String representando o caminho do arquivo de image
 	
 	
-	
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 	public Sala() {
 		
 	}
-	public ArrayList<Usuario> getUsuarios() {
-		return usuarios;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setUsuarios(ArrayList<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	public Integer getNumero() {
 		return numero;

@@ -1,11 +1,22 @@
 package model.objects;
 
+import java.util.ArrayList;
+
 
 public class Usuario {
 	private Nivel nivel;
 	private String nome;
 	private String login;
 	private String senha;
+	private ArrayList<Sala> salas;
+	private ArrayList<Demonstrativo> demonstrativos;
+
+	public ArrayList<Sala> getSalas() {
+		return salas;
+	}
+	public void setSalas(ArrayList<Sala> salas) {
+		this.salas = salas;
+	}
 	public String getLogin() {
 		return login;
 	}
@@ -18,6 +29,12 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	public ArrayList<Demonstrativo> getDemonstrativos() {
+		return demonstrativos;
+	}
+	public void setDemonstrativos(ArrayList<Demonstrativo> demonstrativos) {
+		this.demonstrativos = demonstrativos;
+	}
 	private Usuario usuario;
 	
 	public Usuario getUsuario() {
@@ -29,8 +46,8 @@ public class Usuario {
 	public Usuario() {
 	
 	}
-	public Nivel getNivel() {
-		return nivel;
+	public String getNivel() {
+		return nivel.toString();
 	}
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;

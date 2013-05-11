@@ -40,16 +40,20 @@ public class CadastraUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			HttpSession session = request.getSession();
+			
 			//Recuperando as paginas passadas via request
 			String nome = (String)request.getParameter("nome");
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("senha");
 			String nivel = (String)request.getParameter("nivel");
+			
 			//Instanciando o usuario a ser inserido
 			Usuario usuario = new Usuario();
 			usuario.setNome(nome);
 			usuario.setEmail(login);
 			usuario.setSenha(senha);
+			usuario.setDemonstrativos(null);
+			usuario.setSalas(null);
 			
 			switch (nivel){
 				case "GESTOR":
@@ -65,12 +69,14 @@ public class CadastraUsuario extends HttpServlet {
 					break;
 			}
 			if(UsuarioDAO.insert(usuario)){
+				
 				//Após inserir, consulta novamente e envia para a pagina.
 				ArrayList<Usuario> listaDeUsuarios = UsuarioDAO.selectAll();
 				session.setAttribute("resultado", listaDeUsuarios);
 				response.sendRedirect("/pages/gestor.jsp");
 			}
 			else{
+				
 				//Inserção falhou
 				session.setAttribute("resultado", "Usuário não inserido, tente novamente");
 				response.sendRedirect("/pages/gestor.jsp");
