@@ -29,7 +29,7 @@
             SCSIST
         </h1>
     </div>
-    <div data-role="content">
+    <div data-role="content" id="content">
         <form action="">
             <div data-role="fieldcontain">
                 <label for="login">
@@ -47,9 +47,11 @@
             data-iconpos="left" value="Entrar">
         </form>
     </div>
+   
     <div data-theme="a" data-role="footer" data-position="fixed">
         <h1>
             FAETERJ
+            
         </h1>
     </div>
 </div>

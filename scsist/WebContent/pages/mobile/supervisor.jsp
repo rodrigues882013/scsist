@@ -29,7 +29,7 @@
             Sala 1
         </h1>
     </div>
-    <div data-role="content">
+    <div data-role="content" id="content">
         <form action="">
             <div data-role="fieldcontain">
                 <label for="toggleswitch1">
