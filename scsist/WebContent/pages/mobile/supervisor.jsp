@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <title></title>
   <link rel="stylesheet" href="../../styles/jquery.mobile-1.3.1.min.css">
-  
+ 
   <!-- Extra Codiqa features -->
   <link rel="stylesheet" href="../../styles/codiqa.ext.css">
   
@@ -23,76 +23,25 @@
 </head>
 <body>
 <!-- Home -->
-<div data-role="page" id="page1">
+<div data-role="page" id="supervisor">
     <div data-theme="a" data-role="header">
+    	<a href="#" data-icon="delete">Sair</a>
         <h1>
-            Sala 1
+           Bem vindo, <% out.print("Felipe"); %>
         </h1>
+        <a href="#" data-icon="check">Menu</a>
     </div>
-    <div data-role="content" id="content">
-        <form action="">
-            <div data-role="fieldcontain">
-                <label for="toggleswitch1">
-                    L1
-                </label>
-                <select name="toggleswitch1" id="toggleswitch1" data-theme="a" data-role="slider"
-                data-mini="true">
-                    <option value="off">
-                        Off
-                    </option>
-                    <option value="on">
-                        On
-                    </option>
-                </select>
-            </div>
-            <div data-role="fieldcontain">
-                <label for="toggleswitch3">
-                    L2
-                </label>
-                <select name="toggleswitch3" id="toggleswitch3" data-theme="a" data-role="slider"
-                data-mini="true">
-                    <option value="off">
-                        Off
-                    </option>
-                    <option value="on">
-                        On
-                    </option>
-                </select>
-            </div>
-            <div data-role="fieldcontain">
-                <label for="toggleswitch2">
-                    L3
-                </label>
-                <select name="toggleswitch2" id="toggleswitch2" data-theme="a" data-role="slider"
-                data-mini="true">
-                    <option value="off">
-                        Off
-                    </option>
-                    <option value="on">
-                        On
-                    </option>
-                </select>
-            </div>
-            <div data-role="fieldcontain">
-                <label for="toggleswitch4">
-                    L4
-                </label>
-                <select name="toggleswitch4" id="toggleswitch4" data-theme="a" data-role="slider"
-                data-mini="true">
-                    <option value="off">
-                        Off
-                    </option>
-                    <option value="on">
-                        On
-                    </option>
-                </select>
-            </div>
-        </form>
-        <a data-role="button" data-theme="a" href="#page1" data-icon="arrow-l"
-        data-iconpos="left">
-            Sair
-        </a>
-    </div>
+    <br><br>
+    <ul data-role="listview" data-inset="true"> 
+			<li data-role="list-divider">Salas disponíveis</li> 
+			<li><a href="sala.jsp" rel="external">Sala 1</a></li> 
+			<li><a href="#segunda">Sala 2</a></li> 
+			<li><a href="#segunda">Sala 3</a></li> 
+			<li><a href="#segunda">Sala 4</a></li> 
+			<li><a href="#segunda">Sala 5</a></li>
+			<li><a href="#segunda">Sala Multipla</a></li>  
+	</ul> 
+	
     <div data-theme="a" data-role="footer" data-position="fixed">
         <h1>
             FAETERJ
