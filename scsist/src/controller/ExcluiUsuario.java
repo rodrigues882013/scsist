@@ -43,7 +43,7 @@ public class ExcluiUsuario extends HttpServlet {
 			
 			//Recuperando as paginas passadas via request
 			String nome = (String)request.getParameter("nome");
-			String login = (String)request.getParameter("login"); //Login é a chave primaria a nivel de sistema
+			String login = (String)request.getParameter("login"); //Login e a chave primaria a nivel de sistema
 			String senha = (String)request.getParameter("senha");
 			String nivel = (String)request.getParameter("nivel");
 			
@@ -69,15 +69,15 @@ public class ExcluiUsuario extends HttpServlet {
 			
 			if(UsuarioDAO.delete(usuario)){
 					
-			//Após excluir, consulta novamente e envia para a pagina.
+			//Apos excluir, consulta novamente e envia para a pagina.
 			ArrayList<Usuario> listaDeUsuarios = UsuarioDAO.selectAll();
 			session.setAttribute("resultado", listaDeUsuarios);
 			response.sendRedirect("/pages/gestor.jsp");
 			}
 			else{
 			
-				//Exclusão falhou
-				session.setAttribute("resultado", "Usuário não excluido, tente novamente");
+				//Exclusï¿½o falhou
+				session.setAttribute("resultado", "Usuario nao excluido, tente novamente");
 				response.sendRedirect("/pages/gestor.jsp");
 			}
 		}

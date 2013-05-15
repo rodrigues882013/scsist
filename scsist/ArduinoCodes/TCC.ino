@@ -5,6 +5,7 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  //endereco mac
 IPAddress ip( 10, 1, 1, 18 ) ;    //endereço IP
 EthernetServer server(90);  //criando um objeto do tipo servidor, onde 90 e a porta de comunicacao
 int led = 9; //Define a saida digital 9
+int dispositivos[];
 
 void setup()
 {
@@ -21,7 +22,7 @@ void loop()
 {
   EthernetClient client = server.available();    //servidor esperando uma requisicao, apos a requisicao ser encontrada a funcao retorna um objeto do tipo client 
                                           
-  if (client) {    //testa se o exeiste
+  if (client) {    //testa se o existe
 
     while (client.connected()) {    //testa se o cliente esta conectado
         
