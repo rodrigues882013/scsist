@@ -42,7 +42,7 @@ public class ControleAcesso extends HttpServlet {
 			HttpSession session = request.getSession();
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("passwd");
-			
+			String testeString;
 			Usuario usuario = UsuarioDAO.validarLogin(login, senha);
 			if( usuario!= null){
 				switch (usuario.getNivel()){
