@@ -42,7 +42,6 @@ public class ControleAcesso extends HttpServlet {
 			HttpSession session = request.getSession();
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("passwd");
-			String num = (String)request.getParameter("sala");
 			
 			Usuario usuario = UsuarioDAO.validarLogin(login, senha);
 			if( usuario!= null){
@@ -59,6 +58,7 @@ public class ControleAcesso extends HttpServlet {
 						break;
 
 					default:
+						String num = (String)request.getParameter("sala");
 						Sala sala = SalaDAO.selectByID(Integer.parseInt(num));
 						session.setAttribute("usuario", usuario);
 						session.setAttribute("sala", sala);

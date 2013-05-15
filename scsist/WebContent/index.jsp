@@ -81,7 +81,7 @@
 					<div id="box">
 						<div class="elements">
 							<div class="avatar"></div>
-							<form action="pages/admin.html" method="post" name="form" id="form">
+							<form action="ControleAcesso" method="post" name="form" id="form">
 								<input type="text" id="login" name="login" class="login" placeholder="Usuário" />
 								<input type="password" id="passwd" name="passwd" class="password" placeholder="•••••••••" />
 								<div class="forget">

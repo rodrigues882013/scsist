@@ -70,15 +70,15 @@ public class CadastraUsuario extends HttpServlet {
 			}
 			if(UsuarioDAO.insert(usuario)){
 				
-				//Após inserir, consulta novamente e envia para a pagina.
+				//Apï¿½s inserir, consulta novamente e envia para a pagina.
 				ArrayList<Usuario> listaDeUsuarios = UsuarioDAO.selectAll();
 				session.setAttribute("resultado", listaDeUsuarios);
 				response.sendRedirect("/pages/gestor.jsp");
 			}
 			else{
 				
-				//Inserção falhou
-				session.setAttribute("resultado", "Usuário não inserido, tente novamente");
+				//Inserï¿½ï¿½o falhou
+				session.setAttribute("resultado", "Usuario nao inserido, tente novamente");
 				response.sendRedirect("/pages/gestor.jsp");
 			}
 		}

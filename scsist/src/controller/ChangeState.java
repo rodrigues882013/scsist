@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.DispositivoDAO;
+
 import communication.Client;
 
 /**
@@ -37,18 +39,20 @@ public class ChangeState extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			HttpSession session = request.getSession();
-			//String a = (String) request.getParameter("id");
-			
+			String a = (String) request.getParameter("id");
 			String b = (String) request.getParameter("state");
 			
-			//if (DevicesDB.update(Integer.parseInt(a))){
+			//ArrayList<String> estados = new ArrayList<String>();
+			//ArrayList<String> id = new ArrayList<String>();
+			
+			if (DispositivoDAO.update(a,b)){
 				Client client = Client.getClient();
 				Integer state = client.changeState(b);
 				//client.closeClient();
 				//System.out.println(state);
 				session.setAttribute("state", state);
 				response.sendRedirect("index.jsp");
-			//}
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
