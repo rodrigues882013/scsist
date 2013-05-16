@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -45,13 +46,23 @@ public class CadastraUsuario extends HttpServlet {
 			String nome = (String)request.getParameter("nome");
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("senha");
+			
+			//<----------Encriptando a senha que será guardada no banco de dados-------------------->
+			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+			byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+			StringBuilder hexString = new StringBuilder();
+			for (byte b : messageDigest) {
+			  hexString.append(String.format("%02X", 0xFF & b));
+			}
+			String senhaEncriptada = hexString.toString();
+			//<----------------------------------------------------------------------------------------------------------->
 			String nivel = (String)request.getParameter("nivel");
 			
 			//Instanciando o usuario a ser inserido
 			Usuario usuario = new Usuario();
 			usuario.setNome(nome);
 			usuario.setEmail(login);
-			usuario.setSenha(senha);
+			usuario.setSenha(senhaEncriptada);
 			usuario.setDemonstrativos(null);
 			usuario.setSalas(null);
 			
