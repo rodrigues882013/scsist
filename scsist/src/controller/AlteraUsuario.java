@@ -44,7 +44,7 @@ public class AlteraUsuario extends HttpServlet {
 			
 			//Recuperando as paginas passadas via request
 			String nome = (String)request.getParameter("nome");
-			String login = (String)request.getParameter("login"); //Login ser· usado como chave para alteracao
+			String login = (String)request.getParameter("login"); //Login sera usado como chave para alteracao
 			String senha = (String)request.getParameter("senha");
 			
 			//<----------Encriptando a senha que sera guardada no banco de dados-------------------->
@@ -89,7 +89,7 @@ public class AlteraUsuario extends HttpServlet {
 			else{
 				
 				//Alteracao falhou
-				session.setAttribute("resultado", "AlteraÁ„o n„o feita, tente novamente");
+				session.setAttribute("resultado", "Altera√ßao n√£o feita, tente novamente");
 				response.sendRedirect("/pages/gestor.jsp");
 			
 			}
