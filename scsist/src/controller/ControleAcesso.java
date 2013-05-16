@@ -44,7 +44,7 @@ public class ControleAcesso extends HttpServlet {
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("passwd");
 			
-			//<----------------A senha original não pode trafegar pelos servidores, apenas os hash's--------------------->
+			//<----------------A senha original nao pode trafegar pelos servidores, apenas os hash's--------------------->
 			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 			byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
 			StringBuilder hexString = new StringBuilder();
@@ -52,7 +52,7 @@ public class ControleAcesso extends HttpServlet {
 			  hexString.append(String.format("%02X", 0xFF & b));
 			}
 			String senhaEncriptada = hexString.toString();
-			//<----------------A senha original não pode trafegar pelos servidores, apenas os hash's--------------------->
+			//<----------------A senha original nao pode trafegar pelos servidores, apenas os hash's--------------------->
 			
 			Usuario usuario = UsuarioDAO.validarLogin(login, senhaEncriptada);
 			if( usuario!= null){

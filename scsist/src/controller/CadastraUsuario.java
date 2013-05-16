@@ -47,7 +47,7 @@ public class CadastraUsuario extends HttpServlet {
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("senha");
 			
-			//<----------Encriptando a senha que será guardada no banco de dados-------------------->
+			//<----------Encriptando a senha que sera guardada no banco de dados-------------------->
 			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 			byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
 			StringBuilder hexString = new StringBuilder();
@@ -81,14 +81,14 @@ public class CadastraUsuario extends HttpServlet {
 			}
 			if(UsuarioDAO.insert(usuario)){
 				
-				//Ap�s inserir, consulta novamente e envia para a pagina.
+				//Apos inserir, consulta novamente e envia para a pagina.
 				ArrayList<Usuario> listaDeUsuarios = UsuarioDAO.selectAll();
 				session.setAttribute("resultado", listaDeUsuarios);
 				response.sendRedirect("/pages/gestor.jsp");
 			}
 			else{
 				
-				//Inser��o falhou
+				//Insercao falhou
 				session.setAttribute("resultado", "Usuario nao inserido, tente novamente");
 				response.sendRedirect("/pages/gestor.jsp");
 			}
