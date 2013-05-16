@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.security.MessageDigest;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +44,17 @@ public class ControleAcesso extends HttpServlet {
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("passwd");
 			
-			Usuario usuario = UsuarioDAO.validarLogin(login, senha);
+			//<----------------A senha original não pode trafegar pelos servidores, apenas os hash's--------------------->
+			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+			byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+			StringBuilder hexString = new StringBuilder();
+			for (byte b : messageDigest) {
+			  hexString.append(String.format("%02X", 0xFF & b));
+			}
+			String senhaEncriptada = hexString.toString();
+			//<----------------A senha original não pode trafegar pelos servidores, apenas os hash's--------------------->
+			
+			Usuario usuario = UsuarioDAO.validarLogin(login, senhaEncriptada);
 			if( usuario!= null){
 				switch (usuario.getNivel()){
 
