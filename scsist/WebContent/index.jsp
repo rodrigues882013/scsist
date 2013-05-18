@@ -104,5 +104,8 @@
 				</div>
 			</div>
 			</div>
+			<form action="GeraDemonstrativo?tipo=1" method="post">
+				<input type="submit">
+			</form>
 	</body>
 </html>

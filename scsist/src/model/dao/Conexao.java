@@ -12,7 +12,7 @@ public class Conexao{
 	
 	//Contrutor privado
 	private Conexao(){
-		database = "jdbc:mysql://127.0.0.1:3306/scsist";
+		database = "jdbc:mysql://127.0.0.1:3306/scist";
 		usuario = "root";
 		senha = "300588";
 	}
