@@ -65,6 +65,7 @@
   									<option value="<%=i%>">Sala <%=i%></option>
   								<%} %>
 								</select>
+								<br>
 								<input type="submit" value="Gerar">
 							</form>
 						</div>
@@ -75,22 +76,22 @@
 								switch(aux){
 									case '1':
 										$('#form').html(" ");
-										$('#form').html("<br>Salas<form action='' method='post'><select id='salas'><%for (int i=1; i<=7; i++){ %><option value='<%=i%>'>Sala <%=i%></option><%} %></select><input type='submit' value='Gerar'></form>");
+										$('#form').html("<br>Salas<form action='' method='post'><select id='salas'><%for (int i=1; i<=7; i++){ %><option value='<%=i%>'>Sala <%=i%></option><%} %></select><br><input type='submit' value='Gerar'></form>");
 										break;
 										
 									case '2':
 										$('#form').html(" ");
-										$('#form').append("2");
+										$('#form').html("2");
 										break;
 										
 									case '3':
 										$('#form').html(" ");
-										$('#form').append("3");
+										$('#form').html("3");
 										break;
 										
 									case '4':
 										$('#form').html(" ");
-										$('#form').append("4");
+										$('#form').html("4");
 										break;
 								}
 							});
@@ -105,7 +106,7 @@
 						<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
 					</div>
 					<div id="tabs-4">
-						<h1>Usuários Cadastrados</h1>
+						Olá gestor, nessa aréa você pode fazer todo o gerenciamento dos usuários dos sistema.
 					</div>
 				</div>
 				
