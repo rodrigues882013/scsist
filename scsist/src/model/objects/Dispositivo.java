@@ -17,6 +17,14 @@ public class Dispositivo {
 	public Estado getEstado() {
 		return estado;
 	}
+	public void setEstado(){
+		if (this.estado.compareTo(Estado.DESLIGADO)==0){
+			this.estado = Estado.LIGADO;
+		}
+		else{
+			this.estado = Estado.DESLIGADO;
+		}
+	}
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}

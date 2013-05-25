@@ -78,6 +78,13 @@
 		<servlet-name>RecuperarEstados</servlet-name>
 		<servlet-class>controller.RecuperarEstados</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AlterarEstados</display-name>
+		<servlet-name>AlterarEstados</servlet-name>
+		<servlet-class>controller.AlterarEstados</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>teste</servlet-name>
 		<url-pattern>/teste</url-pattern>
@@ -121,6 +128,10 @@
 	<servlet-mapping>
 		<servlet-name>RecuperarEstados</servlet-name>
 		<url-pattern>/RecuperarEstados</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AlterarEstados</servlet-name>
+		<url-pattern>/AlterarEstados</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
