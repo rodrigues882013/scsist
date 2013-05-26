@@ -1,23 +1,12 @@
 package model.objects;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-
-
 public class Demonstrativo {
 	private Sala sala;
 	private Dispositivo dipositivo;
-	private Date tempoDeUso;
+	private String tempoFim;
+	private String tempoInicio;
 	private Usuario usuario;
-	private HashMap<Sala, ArrayList<Dispositivo>> salas; //Armazena a sala e os dispositivos da mesma
 	
-	public HashMap<Sala, ArrayList<Dispositivo>> getSalas() {
-		return salas;
-	}
-	public void setSalas(HashMap<Sala, ArrayList<Dispositivo>> salas) {
-		this.salas = salas;
-	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -39,13 +28,16 @@ public class Demonstrativo {
 	public void setDipositivo(Dispositivo dipositivo) {
 		this.dipositivo = dipositivo;
 	}
-	public Date getTempoDeUso() {
-		return tempoDeUso;
+	public String getTempoFim() {
+		return tempoFim;
 	}
-	public void setTempoDeUso(Date tempoDeUso) {
-		this.tempoDeUso = tempoDeUso;
+	public void setTempoFim(String tempoFim) {
+		this.tempoFim = tempoFim;
 	}
-	
-	
-	
+	public String getTempoInicio() {
+		return tempoInicio;
+	}
+	public void setTempoInicio(String tempoInicio) {
+		this.tempoInicio = tempoInicio;
+	}
 }

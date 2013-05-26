@@ -10,15 +10,15 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class DispositivoDAO {
 	public synchronized static ArrayList<Dispositivo> selectBySala (int num){return null;}
-	public synchronized static boolean updateGroup (ArrayList<String> identificador, ArrayList<String> estado){
+	public synchronized static boolean updateGroup (ArrayList<String> identificador, ArrayList<String> estado) throws Exception{
 		Conexao con = null;
 
 		try{
 			con = Conexao.getInstancia();
 			con.iniciaBD();
 			Connection c = con.getConexao();
-			Iterator itId = identificador.iterator();
-			Iterator itEst = estado.iterator();
+			Iterator<String> itId = identificador.iterator();
+			Iterator<String> itEst = estado.iterator();
 			PreparedStatement ps = null;
 			
 			//Percorre ambos juntos
@@ -37,15 +37,15 @@ public class DispositivoDAO {
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			return false;
+			throw e;
+			//return false;
 		}
 		finally{
 			con.fechaBd();
 		}
 	}
-
 	public synchronized static ArrayList<Dispositivo> selectAll (){return null;}
-	public synchronized static boolean update (String identificador, String estado){
+	public synchronized static boolean update (String identificador, String estado) throws Exception{
 		Conexao con = null;
 
 		try{
@@ -63,7 +63,8 @@ public class DispositivoDAO {
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			return false;
+			throw e;
+			//return false;
 		}
 		finally{
 			con.fechaBd();

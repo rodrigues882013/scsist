@@ -48,8 +48,13 @@ public class Client {
 	 *  1 - Ligado										*
 	 * -1 - Falha         								*
 	 ***************************************************/
-	public Integer changeState(String state){
+	public Integer changeState(String estado){
 		try {
+			String state = "";
+			if (estado.compareTo("LIGADO") == 0)state = "1";
+			if (estado.compareTo("DESLIGADO") == 0)state = "0";
+			if (estado.compareTo("FALHA") == 0)state = "-1";
+			
 			this.out.writeBytes(state); 
 			Integer situation = Integer.parseInt(this.in.readLine());
 			System.out.println(situation);

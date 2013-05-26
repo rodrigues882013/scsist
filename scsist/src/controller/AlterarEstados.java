@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.DemonstrativoDAO;
 import model.dao.DispositivoDAO;
 import model.dao.SalaDAO;
+import model.dao.UsuarioDAO;
+import model.objects.Demonstrativo;
 import model.objects.Sala;
 import model.objects.Usuario;
 
@@ -41,55 +45,114 @@ public class AlterarEstados extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		String estado = "";
 		try{
-			HttpSession session = request.getSession();
+			
 			String numSala = (String) request.getParameter("id"); //Numero da Sala
-			String estado= (String) request.getParameter("estado");
-			String NomeUsuario = (String) request.getParameter("usuario");
+			//String estado= (String) request.getParameter("estado"); //
+			String idUsuario = (String) request.getParameter("usuario"); //Login
 			String grupo = (String) request.getParameter("grupo"); //Frente, atras e meio
 			
+			//Recupera a sala, bem como o ultimo usuario que a controlou
 			Sala sala = SalaDAO.selectByID(Integer.parseInt(numSala));
-			//Usuario u = UsuarioDAO.selectByName();
+			//Recupera o usuario que controlara a sala nesse momento e o define no banco
+			Usuario u = UsuarioDAO.selectById(idUsuario);
+			sala.setUsuario(u);
+			SalaDAO.update(sala);
+			boolean condicao = true;
 			
-			sala.setUsuario(new Usuario());
-			
-			if (grupo.compareTo("Frente") == 0){
+			if (grupo.compareTo("Frente") == 0){ //Parte da frente da iluminação
 				for (int i=0; i<2; i++){
-					sala.getDispositivos().get(i).setEstado();
-					if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString())){
-						Client client = Client.getClient();
-						Integer state = client.changeState(estado);
-						//client.closeClient();
-						//System.out.println(state);
-						session.setAttribute("state", state);
-						response.sendRedirect("index.jsp");
-					}
-				}
-			}
-			else{
-				if (grupo.compareTo("Meio") == 0){
-					for (int i=2; i<5; i++){
-						sala.getDispositivos().get(i).setEstado();
-						if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString())){
+					sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
+					if (sala.getDispositivos().get(i) != null){ //Checa se ha pelo menos um dispositivo
+						Demonstrativo d = new Demonstrativo();
+						d.setSala(sala);
+						d.setDipositivo(sala.getDispositivos().get(i));
+						d.setUsuario(u);
+						if(sala.getDispositivos().get(i).getEstado().toString().compareTo("LIGADO") == 0){
+							d.setTempoInicio(new Timestamp(System.currentTimeMillis()).toString());
+							condicao = DemonstrativoDAO.insert(d);
+						}
+						else{
+							if(sala.getDispositivos().get(i).getEstado().toString().compareTo("DESLIGADO") == 0){
+								d.setTempoFim(new Timestamp(System.currentTimeMillis()).toString());
+								condicao = DemonstrativoDAO.update(d);
+							}
+						}
+						if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString()) && condicao){ //Altera o estado na DAO
 							Client client = Client.getClient();
-							Integer state = client.changeState(estado);
-							//client.closeClient();
+							Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString()); //Passa o estado para o o communication.Client alterar o estado
 							//System.out.println(state);
-							session.setAttribute("state", state);
+							if (state == 1)estado = "LIGADO";
+							if (state == 0)estado = "DESLIGADO";
+							if (state == -1)estado = "FALHA";
+							session.setAttribute("state", estado);
 							response.sendRedirect("index.jsp");
 						}
 					}
 				}
-				else{
-					for (int i=5; i<7; i++){
-						sala.getDispositivos().get(i).setEstado();
-						if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString())){
-							Client client = Client.getClient();
-							Integer state = client.changeState(estado);
-							//client.closeClient();
-							//System.out.println(state);
-							session.setAttribute("state", state);
-							response.sendRedirect("index.jsp");
+			}
+			else{
+				if (grupo.compareTo("Meio") == 0){ //Parte do Meio
+					for (int i=0; i<2; i++){
+						sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
+						if (sala.getDispositivos().get(i) != null){ //Checa se ha pelo menos um dispositivo
+							Demonstrativo d = new Demonstrativo();
+							d.setSala(sala);
+							d.setDipositivo(sala.getDispositivos().get(i));
+							d.setUsuario(u);
+							if(sala.getDispositivos().get(i).getEstado().toString().compareTo("LIGADO") == 0){
+								d.setTempoInicio(new Timestamp(System.currentTimeMillis()).toString());
+								condicao = DemonstrativoDAO.insert(d);
+							}
+							else{
+								if(sala.getDispositivos().get(i).getEstado().toString().compareTo("DESLIGADO") == 0){
+									d.setTempoFim(new Timestamp(System.currentTimeMillis()).toString());
+									condicao = DemonstrativoDAO.update(d);
+								}
+							}
+							if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString()) && condicao){ //Altera o estado na DAO
+								Client client = Client.getClient();
+								Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString()); //Passa o estado para o o communication.Client alterar o estado
+								//System.out.println(state);
+								if (state == 1)estado = "LIGADO";
+								if (state == 0)estado = "DESLIGADO";
+								if (state == -1)estado = "FALHA";
+								session.setAttribute("state", estado);
+								response.sendRedirect("index.jsp");
+							}
+						}
+					}
+				}
+				else{ //Parte de traz
+					for (int i=0; i<2; i++){
+						sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
+						if (sala.getDispositivos().get(i) != null){ //Checa se ha pelo menos um dispositivo
+							Demonstrativo d = new Demonstrativo();
+							d.setSala(sala);
+							d.setDipositivo(sala.getDispositivos().get(i));
+							d.setUsuario(u);
+							if(sala.getDispositivos().get(i).getEstado().toString().compareTo("LIGADO") == 0){
+								d.setTempoInicio(new Timestamp(System.currentTimeMillis()).toString());
+								condicao = DemonstrativoDAO.insert(d);
+							}
+							else{
+								if(sala.getDispositivos().get(i).getEstado().toString().compareTo("DESLIGADO") == 0){
+									d.setTempoFim(new Timestamp(System.currentTimeMillis()).toString());
+									condicao = DemonstrativoDAO.update(d);
+								}
+							}
+							if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString()) && condicao){ //Altera o estado na DAO
+								Client client = Client.getClient();
+								Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString()); //Passa o estado para o o communication.Client alterar o estado
+								//System.out.println(state);
+								if (state == 1)estado = "LIGADO";
+								if (state == 0)estado = "DESLIGADO";
+								if (state == -1)estado = "FALHA";
+								session.setAttribute("state", estado);
+								response.sendRedirect("index.jsp");
+							}
 						}
 					}
 				}
@@ -97,6 +160,8 @@ public class AlterarEstados extends HttpServlet {
 		}
 		catch(Exception e){
 			e.printStackTrace();
+			session.setAttribute("state", "Erro, tente de novo ou contacte a administração");
+			response.sendRedirect("index.jsp");
 		}
 	}
 
