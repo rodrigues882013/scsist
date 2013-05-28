@@ -439,6 +439,8 @@ background-image: -webkit-gradient(
 input[type=checkbox] {
     display: none;
 }
+
+
 input[type=checkbox] + label {
     text-indent: -9999px;
     display: block;
@@ -508,7 +510,8 @@ input[type=checkbox]:checked + label {
 #tabs-1 input[type="submit"] {
 	color: #000;
 	background-color: #CCCCCC;
-	border-radius: 20px;
+	border-radius: 5px;
+	padding: 5px;
 }
 
 #tabs-1 input[type="reset"] {
@@ -516,6 +519,49 @@ input[type=checkbox]:checked + label {
 	background-color: #CCCCCC;
 	border-radius: 20px;
 }
+	
+
+#tabs-4 input[type="text"] {
+	border:1px solid #000;
+	color: #000;
+	border-radius: 5px;
+}
+
+#tabs-4 input[type="email"] {
+	border:1px solid #000;
+	color: #000;
+	border-radius: 10px;
+}
+
+#tabs-4 input[type="submit"] {
+	color: #000;
+	background-color: #CCCCCC;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#tabs-4 input[type="reset"] {
+	color: #000;
+	background-color: #CCCCCC;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#tabs-4 input[type="password"] {
+	border:1px solid #000;
+	color: #000;
+	border-radius: 5px;
+}
+
+table{
+	border:  #FFFFFF;
+
+}
+
+th{background: #CFCFCF; color:#000; font-weight:bold;}
+tbody tr{background:#EFEFEF;}
+tbody td:hover{background:#CFCFCF;color:#FFFFFF;}
+tbody td:hover a, tbody td:hover a:visited{color:#FFFFFF;}
 	
 
 

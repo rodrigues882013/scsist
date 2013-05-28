@@ -67,11 +67,11 @@ public class CadastraUsuario extends HttpServlet {
 			usuario.setSalas(null);
 			
 			switch (nivel){
-				case "GESTOR":
+				case "1":
 					usuario.setNivel(Nivel.GESTOR);
 					break;
 				
-				case "SUPERVISOR":
+				case "2":
 					usuario.setNivel(Nivel.SUPERVISOR);
 					break;
 				
@@ -82,15 +82,16 @@ public class CadastraUsuario extends HttpServlet {
 			if(UsuarioDAO.insert(usuario)){
 				
 				//Apos inserir, consulta novamente e envia para a pagina.
-				ArrayList<Usuario> listaDeUsuarios = UsuarioDAO.selectAll();
-				session.setAttribute("resultado", listaDeUsuarios);
-				response.sendRedirect("/pages/gestor.jsp");
+				ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+				usuarios = UsuarioDAO.selectAll();
+				session.setAttribute("usuarios", usuarios);
+				response.sendRedirect("pages/gestor/");
 			}
 			else{
 				
 				//Insercao falhou
 				session.setAttribute("resultado", "Usuario nao inserido, tente novamente");
-				response.sendRedirect("/pages/gestor.jsp");
+				response.sendRedirect("/pages/gestor/");
 			}
 		}
 		catch(Exception e){

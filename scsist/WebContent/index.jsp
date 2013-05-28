@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%
+	String cond = (String)session.getAttribute("erro");
+	String erro = "";
+	if (cond != null){
+		erro = cond;
+	}
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -100,6 +106,8 @@
 					</div>
 					<div class="signup">
 						Ainda não é cadastrado <a href="#">contacte</a> o gestor
+						<br><br><br>
+						<font color="red"><%=erro%></font>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@page import="model.objects.Usuario"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
 
+
+<%
+	Usuario u = (Usuario) session.getAttribute("usuario");
+	ArrayList<Usuario> us = (ArrayList<Usuario>) session.getAttribute("usuarios");
+	if (u != null){
+%>
 
 <!DOCTYPE html>
 <html>
@@ -12,9 +21,41 @@
 		<link type="text/css" rel="stylesheet" media="all" href="../../styles/jquery-ui.css"/>
 		<script language="JavaScript" src="../../scripts/jquery.js" type="text/javascript"></script>
 		<script type="text/javascript" src="../../scripts/jquery-ui.js"></script>
+		<script language="JavaScript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
+		
 		<script type="text/javascript">
 			$(function() {
 				$( "#tabs" ).tabs();
+				$('#tabs-4 .novoUsuario').hide();
+			});
+			
+			$(document).ready( function(){
+				$("#form").validate({
+					rules:{
+						nome:{
+							required: true
+						},
+						senha:{
+							required: true
+						},
+						login:{
+							required: true
+						}
+						
+					},
+					messages:{
+						nome:{
+							required: "Nome é obrigatório"
+						},
+						senha:{
+							required: "Senha é obrigatoria"
+						},
+						login:{
+							required: "Login é obrigatorio"
+						}
+						
+					}
+				});
 			});
 			
 			
@@ -56,7 +97,7 @@
   							<option value="3">Comparativo por salas</option>
   							<option value="4">Comparativo por período</option>
 						</select>
-						<div id="form">
+						<div id="form1">
 							<br>
 							Salas
 							<form action="" method="post">
@@ -66,32 +107,33 @@
   								<%} %>
 								</select>
 								<br>
+								<br>
 								<input type="submit" value="Gerar">
 							</form>
 						</div>
 						<script type="text/javascript">
 							$('select').change(function(){
 								var aux = $('#list').val();
-								$('#form').append(" ");
+								$('#form1').append(" ");
 								switch(aux){
 									case '1':
-										$('#form').html(" ");
-										$('#form').html("<br>Salas<form action='' method='post'><select id='salas'><%for (int i=1; i<=7; i++){ %><option value='<%=i%>'>Sala <%=i%></option><%} %></select><br><input type='submit' value='Gerar'></form>");
+										$('#form1').html(" ");
+										$('#form1').html("<br>Salas<form action='' method='post'><select id='salas'><%for (int i=1; i<=7; i++){ %><option value='<%=i%>'>Sala <%=i%></option><%} %></select><br><input type='submit' value='Gerar'></form>");
 										break;
 										
 									case '2':
-										$('#form').html(" ");
-										$('#form').html("2");
+										$('#form1').html(" ");
+										$('#form1').html("2");
 										break;
 										
 									case '3':
-										$('#form').html(" ");
-										$('#form').html("3");
+										$('#form1').html(" ");
+										$('#form1').html("3");
 										break;
 										
 									case '4':
-										$('#form').html(" ");
-										$('#form').html("4");
+										$('#form1').html(" ");
+										$('#form1').html("4");
 										break;
 								}
 							});
@@ -106,13 +148,82 @@
 						<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
 					</div>
 					<div id="tabs-4">
-						Olá gestor, nessa aréa você pode fazer todo o gerenciamento dos usuários dos sistema.
+						<h3>Manutenção de usuários</h3>
+						<%
+							if (us != null){
+						%>
+						
+						<br><br>
+						<div id="dataTable" align="center">
+							<table border=1>
+								<tr>
+									<th>Nome</th>
+									<th>Login</th>
+									<th>Nivel</th>
+									<th colspan="2">Opções</th>
+								</tr>
+							<%
+								Iterator<Usuario> it = us.iterator();
+								while(it.hasNext()){
+									Usuario usuario = (Usuario)it.next();
+									String nome = usuario.getNome();
+									String login = usuario.getLogin();
+									String nivel = usuario.getNivel();
+							%>
+								<tr>
+									<td><%=nome %></td>
+									<td><%=login %></td>
+									<td><%=nivel %></td>
+									<td><a href="">Alterar</a></td>
+									<td><a href="">Excluir</a></td>
+								</tr>
+							<%	} %>
+							</table>
+						</div>
+						<br><br>
+						<p align="center">Se deseja adicionar um novo usuário click <a href="#">aqui</a><p>
+						<script type="text/javascript">
+							$('#tabs-4 a').click(function(){
+								$('#dataTable').html("");
+								$("p").html("");
+								$('#tabs-4 .novoUsuario').show();
+							});
+						</script>
+							<%}%>
+							<div class="novoUsuario">
+							<%if (us == null){ %>						
+							Não existem usuário cadastrados no momento, deseja cadastrar um novo usuário?
+							<%} %>	
+								<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
+									<label>Nome: </label><input type="text" name="nome" id="nome">
+									<label>Login: </label><input type="text" name="login" id="login"><br><br>
+									<label>Senha: </label><input type="password" name="senha" id="senha">
+									<label>Nivel: </label>
+									<select name="nivel" id="nivel">
+										<option value="1">GESTOR</option>
+										<option value="2">SUPERVISOR</option>
+										<option value="3">PROFESSOR</option>
+									</select>
+									<br><br><br>
+									<input type="submit" value="Novo Usuário">
+									<input type="reset" value="Limpar">
+								</form>
+							</div>
+							
+							
 					</div>
-				</div>
-				
-			</div>  
-
-		</div>         
-	</div>
+					</div>  
+				</div>         
+			</div>
+		</div>
 	</body>
 </html>
+
+<%
+	}
+	else{
+		response.sendRedirect("../../");
+	}
+
+
+%>

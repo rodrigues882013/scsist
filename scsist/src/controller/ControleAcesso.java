@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,8 +40,9 @@ public class ControleAcesso extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
+		
+		try{			
 			String login = (String)request.getParameter("login");
 			String senha = (String)request.getParameter("passwd");
 			
@@ -53,19 +55,23 @@ public class ControleAcesso extends HttpServlet {
 			}
 			String senhaEncriptada = hexString.toString();
 			//<----------------A senha original nao pode trafegar pelos servidores, apenas os hash's--------------------->
-			
+			System.out.println(senhaEncriptada);
 			Usuario usuario = UsuarioDAO.validarLogin(login, senhaEncriptada);
 			if( usuario!= null){
+				usuario.setSenha(senha);
 				switch (usuario.getNivel()){
 
 					case "GESTOR":
+						ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+						usuarios = UsuarioDAO.selectAll();
+						session.setAttribute("usuarios", usuarios);
 						session.setAttribute("usuario", usuario);
-						response.sendRedirect("/pages/gestor.jsp");
+						response.sendRedirect("pages/gestor/");
 						break;
 
 					case "SUPERVISOR":
 						session.setAttribute("usuario", usuario);
-						response.sendRedirect("/pages/supervisor.jsp");
+						response.sendRedirect("pages/supervisor/");
 						break;
 
 					default:
@@ -73,12 +79,19 @@ public class ControleAcesso extends HttpServlet {
 						Sala sala = SalaDAO.selectByID(Integer.parseInt(num));
 						session.setAttribute("usuario", usuario);
 						session.setAttribute("sala", sala);
-						response.sendRedirect("/pages/professor.jsp");
+						response.sendRedirect("pages/professor/");
 						break;
 					}
 			}
 		}
+		catch (java.sql.SQLException e){
+			session.setAttribute("erro", "Usuario não cadastrado ou senha incorreta, contacte o suporte/gestor");
+			response.sendRedirect("index.jsp");
+			e.printStackTrace();
+		}
 		catch (Exception e){
+			session.setAttribute("erro", "Usuario");
+			response.sendRedirect("index.jsp");
 			e.printStackTrace();
 		}
 	}

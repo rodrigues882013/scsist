@@ -14,7 +14,7 @@ public class Conexao{
 	private Conexao(){
 		database = "jdbc:mysql://127.0.0.1:3306/scsist";
 		usuario = "root";
-		senha = "300588";
+		senha = "";
 	}
 	
 	//Retorna a Instancia, aqui estou usando padrao Singleton, veja que sempre so existira uma instancia do objeto ConexeaoBD
