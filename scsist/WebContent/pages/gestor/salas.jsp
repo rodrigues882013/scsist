@@ -36,7 +36,7 @@
 		</script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#login").hide();
+				$("#estado").hide();
 			});
 		</script>
 
@@ -127,17 +127,17 @@
   		</div>
  		<br>
  		<div style="margin-left:180px;"><h1>Gerenciamento de salas</h1></div>
- 		<div id="login">
+ 		<div id="estado">
  			Ola <%=nome%>
  		</div>
- 		<div id="loginAba">
+ 		<div id="estadoAba">
  			
  		</div>
  		<script type="text/javascript">
  			
- 			$("#loginAba").mouseover(function(){
+ 			$("#estadoAba").mouseover(function(){
  				$(this).hide();
- 				$("#login").show("slow");
+ 				$("#estado").show("slow");
  			});
  		</script>
 		<div id="conteudo">
