@@ -63,10 +63,13 @@ public class ControleAcesso extends HttpServlet {
 
 					case "GESTOR":
 						ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+						ArrayList<Sala> salas = new ArrayList<Sala>();
 						usuarios = UsuarioDAO.selectAll();
+						salas = SalaDAO.selectAll();
 						session.setAttribute("usuarios", usuarios);
+						session.setAttribute("salas", salas);
 						session.setAttribute("usuario", usuario);
-						response.sendRedirect("pages/gestor/");
+						response.sendRedirect("pages/gestor/index2.jsp");
 						break;
 
 					case "SUPERVISOR":

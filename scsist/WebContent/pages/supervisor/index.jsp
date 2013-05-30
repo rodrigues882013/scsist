@@ -7,7 +7,7 @@
 
 		<title>Supervisor</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script language="javascript" src="ajax2.js"></script>
+		<script type="text/javascript" src="../../scripts/ajax2.js"></script>
 		<link type="text/css" rel="stylesheet" media="all" href="../../styles/style.css"/>
 		<script type="text/javascript" src="../../scripts/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="../../scripts/jquery.reveal.js"></script>

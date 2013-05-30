@@ -16,12 +16,12 @@
 
 		<title>Gestor</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script language="javascript" src="ajax2.js"></script>
+		<script type="text/javascript" src="ajax2.js"></script>
 		<link type="text/css" rel="stylesheet" media="all" href="../../styles/style.css"/>
 		<link type="text/css" rel="stylesheet" media="all" href="../../styles/jquery-ui.css"/>
-		<script language="JavaScript" src="../../scripts/jquery.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../scripts/jquery.js" type="text/javascript"></script>
 		<script type="text/javascript" src="../../scripts/jquery-ui.js"></script>
-		<script language="JavaScript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
 		
 		<script type="text/javascript">
 			$(function() {

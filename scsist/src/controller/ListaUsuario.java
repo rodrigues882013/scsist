@@ -39,14 +39,14 @@ public class ListaUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			HttpSession session = request.getSession();
-			ArrayList<Usuario> listaDeUsuarios = UsuarioDAO.selectAll();
-			if(listaDeUsuarios != null){
-				session.setAttribute("resultado", listaDeUsuarios);
-				response.sendRedirect("/pages/gestor.jsp");
+			ArrayList<Usuario> usuarios = UsuarioDAO.selectAll();
+			if(usuarios != null){
+				session.setAttribute("resultado", usuarios);
+				response.sendRedirect("pages/gestor/usuario.jsp");
 			}
 			else{
 				session.setAttribute("resultado", "Falha ao buscar registros, atualize e tente novamente");
-				response.sendRedirect("/pages/gestor.jsp");
+				response.sendRedirect("pages/gestor/index2.jsp");
 			}
 		}
 		catch (Exception e){

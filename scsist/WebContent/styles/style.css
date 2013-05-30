@@ -6,8 +6,7 @@
 
 html{
 	height:100%;
-	background-color: #CFCFCF;
-	/*background-image: url(../images/background.png);*/
+	background-color: #CFFFCF;
 } 
 
 #room .room img{
@@ -240,7 +239,7 @@ a:hover {
 #menuc{ 
 	position: relative;
 	background:#000;
-	height:100px;
+	height:80px;
 	margin-top:0px;
 	
 	
@@ -265,6 +264,12 @@ background-image: -webkit-gradient(
 	color-stop(0.72, rgb(3,5,20))
                                    );
 
+}
+
+#menu {
+	height: 45px;
+	width: 1000px;
+	position: relative;
 }
 
 /*Aqui começa o efeito da pagina com fade*/
@@ -521,33 +526,46 @@ input[type=checkbox]:checked + label {
 }
 	
 
-#tabs-4 input[type="text"] {
+#tabs-3 input[type="text"] {
 	border:1px solid #000;
 	color: #000;
 	border-radius: 5px;
 }
 
-#tabs-4 input[type="email"] {
+#tabs-3 input[type="email"] {
 	border:1px solid #000;
 	color: #000;
 	border-radius: 10px;
 }
 
-#tabs-4 input[type="submit"] {
+#tabs-3 input[type="submit"] {
+	color: #000;
+	background-color: #CCCCCC;
+	border-radius: 0px;
+	padding: 5px;
+	box-shadow: 3px 3px 2px #888888;
+	cursor: pointer;
+}
+
+#tabs-3 input[type="button"] {
 	color: #000;
 	background-color: #CCCCCC;
 	border-radius: 5px;
 	padding: 5px;
 }
 
-#tabs-4 input[type="reset"] {
+#tabs-3 input[type="reset"] {
 	color: #000;
 	background-color: #CCCCCC;
-	border-radius: 5px;
+	border-radius: 0px;
 	padding: 5px;
+	box-shadow: 0 3px 0 rgba(0, 0, 0, .3), 0 2px 7px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	
+	
 }
 
-#tabs-4 input[type="password"] {
+#tabs-3 input[type="password"] {
 	border:1px solid #000;
 	color: #000;
 	border-radius: 5px;
@@ -555,14 +573,214 @@ input[type=checkbox]:checked + label {
 
 table{
 	border:  #FFFFFF;
+	width: 750px;
 
 }
 
-th{background: #CFCFCF; color:#000; font-weight:bold;}
+
+th{background: #000000; color:#FFFFFF; font-weight:bold;}
+td{text-align: center;}
 tbody tr{background:#EFEFEF;}
 tbody td:hover{background:#CFCFCF;color:#FFFFFF;}
 tbody td:hover a, tbody td:hover a:visited{color:#FFFFFF;}
 	
+ul.MenuBarHorizontal
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+	cursor: default;
+	width: auto;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #CFCFCF;
+}
+/* Set the active Menu Bar with this class, currently setting z-index to accomodate IE rendering bug: http://therealcrisp.xs4all.nl/meuk/IE-zindexbug.html */
+ul.MenuBarActive
+{
+	z-index: 1000;
+}
+/* Menu item containers, position children relative to this container and are a fixed width */
+ul.MenuBarHorizontal li
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+	position: relative;
+	text-align: center;
+	cursor: pointer;
+	width: 15.6em;
+	float: left;
+}
+/* Submenus should appear below their parent (top: 0) with a higher z-index, but they are initially off the left side of the screen (-1000em) */
+ul.MenuBarHorizontal ul
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+	z-index: 1020;
+	cursor: default;
+	width: 9em;
+	position: absolute;
+	left: -1000em;
+}
+/* Submenu that is showing with class designation MenuBarSubmenuVisible, we set left to auto so it comes onto the screen below its parent menu item */
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible
+{
+	left: auto;
+}
+/* Menu item containers are same fixed width as parent */
+ul.MenuBarHorizontal ul li
+{
+	width: 8.2em;
+}
+/* Submenus should appear slightly overlapping to the right (95%) and up (-5%) */
+ul.MenuBarHorizontal ul ul
+{
+	position: absolute;
+	margin: -5% 0 0 95%;
+}
+/* Submenu that is showing with class designation MenuBarSubmenuVisible, we set left to 0 so it comes onto the screen */
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible ul.MenuBarSubmenuVisible
+{
+	left: auto;
+	top: 0;
+}
 
+/*******************************************************************************
 
+ DESIGN INFORMATION: describes color scheme, borders, fonts
 
+ *******************************************************************************/
+
+/* Submenu containers have borders on all sides */
+ul.MenuBarHorizontal ul
+{
+	border: 1px solid #CFCFCF;
+}
+/* Menu items are a light gray block with padding and no text decoration */
+ul.MenuBarHorizontal a
+{
+	display: block;
+	cursor: pointer;
+	background-color: #EEE;
+	padding: 0.5em 0.75em;
+	color: #333;
+	text-decoration: none;
+	border: 1px solid #CFCFCF;
+}
+/* Menu items that have mouse over or focus have a blue background and white text */
+ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus
+{
+	background-image: background-image: linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
+background-image: -o-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
+background-image: -moz-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
+background-image: -webkit-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
+background-image: -ms-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.44, rgb(2,33,48)),
+	color-stop(0.72, rgb(3,5,20))
+                                   );
+	
+	color: #FFF;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+/* Menu items that are open with #97D6FF; submenus are set to MenuBarItemHover with a blue background and white text */
+ul.MenuBarHorizontal a.MenuBarItemHover, ul.MenuBarHorizontal a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal a.MenuBarSubmenuVisible
+{
+	background-color: #97D6FF;
+	color: #FFF;
+}
+
+/*******************************************************************************
+
+ SUBMENU INDICATION: styles if there is a submenu under a given menu item
+
+ *******************************************************************************/
+
+/* Menu items that have a submenu have the class designation MenuBarItemSubmenu and are set to use a background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal a.MenuBarItemSubmenu
+{
+	background-image: url(SpryMenuBarDown.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+/* Menu items that have a submenu have the class designation MenuBarItemSubmenu and are set to use a background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenu
+{
+	background-image: url(SpryMenuBarRight.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+/* Menu items that are open with submenus have the class designation MenuBarItemSubmenuHover and are set to use a "hover" background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover
+{
+	background-image: url(SpryMenuBarDownHover.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+/* Menu items that are open with submenus have the class designation MenuBarItemSubmenuHover and are set to use a "hover" background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenuHover
+{
+	background-image: url(SpryMenuBarRightHover.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+
+/*******************************************************************************
+
+ BROWSER HACKS: the hacks below should not be changed unless you are an expert
+
+ *******************************************************************************/
+
+/* HACK FOR IE: to make sure the sub menus show above form controls, we underlay each submenu with an iframe */
+ul.MenuBarHorizontal iframe
+{
+	position: absolute;
+	z-index: 1010;
+	filter:alpha(opacity:0.1);
+}
+/* HACK FOR IE: to stabilize appearance of menu items; the slash in float is to keep IE 5.0 from parsing */
+@media screen, projection
+{
+	ul.MenuBarHorizontal li.MenuBarItemIE
+	{
+		display: inline;
+		f\loat: left;
+		background: #FFF;
+	}
+}
+
+.accordion {
+    margin:20px auto;
+    overflow:hidden;
+    position:relative;
+    height: 400px;
+    width:960px;
+}
+
+#login{
+	margin-top: 50px;
+	background-color:#000;
+	width:50px; 
+	height:150px; 
+	color:#FFF; 
+	border-top-right-radius:10px; 
+	border-bottom-right-radius:10px;
+}
+
+#loginAba{
+	margin-top: 50px;
+	background-color:#000;
+	width:40px; 
+	height:60px; 
+	color:#FFF; 
+	border-top-right-radius:10px; 
+	border-bottom-right-radius:10px;
+}
