@@ -85,7 +85,7 @@ public class CadastraUsuario extends HttpServlet {
 				ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 				usuarios = UsuarioDAO.selectAll();
 				session.setAttribute("usuarios", usuarios);
-				response.sendRedirect("pages/gestor/");
+				response.sendRedirect("pages/gestor/usuarios.jsp");
 			}
 			else{
 				

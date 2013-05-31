@@ -13,9 +13,9 @@
 		<script type="text/javascript" src="../../scripts/jquery.reveal.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-		
-	$('a').click(function() {
-        		this.blur();
+				$('.content .rooms a').click(function() {
+        			this.blur();
+        			alert("Aqui"); //Aqui deverá entrar uma chamada AJAX pro servlet que atualizará  os estados.
         	});
 		
 			//Hide all item descriptions in the info box
@@ -87,48 +87,95 @@
 					<a href="../index.html">SAIR</a>
 				</div>
 			<div class="content">
-				
-				<div class="room1" >
-					<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-				</div>
+				<div class="rooms">
+					<div class="room1" >
+						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
+					</div>
 			
-				<div class="room2">
-					<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-				</div>
+					<div class="room2">
+						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
+					</div>
 			
-				<div class="room3">
-					<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<div class="room4">
-					<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-				</div>
+					<div class="room3">
+						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
+					</div>
+					<br><br><br><br><br><br><br>
+					<div class="room4">
+						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
+					</div>
 			
-				<div class="room5">
-					<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-				</div>
+					<div class="room5">
+						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
+					</div>
 			
-				<div class="room6">
-					<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-				</div>
-			
+					<div class="room6">
+						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
+					</div>
+				</div>			
 				<div id="myModal" class="reveal-modal">
 					<div class="more" id="couch">
-						<a href="#"><img src="../../images/more.png"/></a>
+						<div class="frente"><a href="#"><img src="../../images/off.png"/></a></div>
 						<span>Ascendendo a luz 1</span>
 			
 					</div>
+					
+					<script type="text/javascript">
+					
+						$("#myModal .more .frente a").click(function(){
+							$.ajax({
+								url : "../../TesteServlet",
+								data : "id=1&grupo=1",
+								type : "POST",
+								dataType : "json",
+								success: function(json){
+										alert(json);
+										if (json == "1"){
+											$("#myModal .more .frente a").html("");
+											$("#myModal .more .frente a").html("<img src='../../images/on.png'/>");
+										}
+										else{
+											$("#myModal .more .frente a").html("");
+											$("#myModal .more .frente a").html("<img src='../../images/off.png'/>");
+										}
+								}, 
+								error : function(){
+									alert("Erro");
+								}
+								
+							});
+						});
+					</script>
 		
 					<div class="more" id="plant">
-						<a href="#"><img src="../../images/more.png"/></a>
+						<div class="meio"><a href="#"><img src="../../images/more.png"/></a></div>
 						<span>Ascendendo a luz 2</span>
 					</div>
+					<script type="text/javascript">
+					
+						$("#myModal .more .meio a").click(function(){
+							$.ajax({
+								url : "../../TesteServlet",
+								data : "id=1&grupo=1",
+								type : "POST",
+								dataType : "json",
+								success: function(json){
+										alert(json);
+										if (json == "1"){
+											$("#myModal .more .meio a").html("");
+											$("#myModal .more .meio a").html("<img src='../../images/on.png'/>");
+										}
+										else{
+											$("#myModal .more .meio a").html("");
+											$("#myModal .more .meio a").html("<img src='../../images/off.png'/>");
+										}
+								}, 
+								error : function(){
+									alert("Erro");
+								}
+								
+							});
+						});
+					</script>
 							
 				
 					<img src="../../images/h3_02.jpg" width="800px" height="400px">

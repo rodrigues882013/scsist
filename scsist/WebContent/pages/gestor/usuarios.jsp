@@ -30,11 +30,12 @@
 		<script type="text/javascript">
 			$(document).ready( function(){
 				$("#novoUsuario").hide();	
+				$("#atualizarUsuario").hide();	
 			});
-			
-			
+
+
 		</script>
-		
+
 	</head>
 
 	<body>
@@ -48,7 +49,7 @@
 		<div align="center">
 			<div class="menu" id="menu"> 
   				<ul id="MenuBar1" class="MenuBarHorizontal">
-   	  				<li><a href="demonstrativos.jsp" >Demonstrativo</a></li>
+   	  				<li><a href="demonstrativos.jsp">Demonstrativo</a></li>
       				<li><a href="salas.jsp">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
       				<li><a href="">Suporte</a></li>
@@ -69,10 +70,11 @@
 									<th>Nome</th>
 									<th>Login</th>
 									<th>Nível</th>
-									<th colspan="2">Opções</th>
+									<th colspan="3">Opções</th>
 								</tr>
 							<%
 								Iterator<Usuario> it = us.iterator();
+								int i = 0;
 								while(it.hasNext()){
 									Usuario usuario = (Usuario)it.next();
 									String nome = usuario.getNome();
@@ -83,20 +85,27 @@
 									<td><%=nome %></td>
 									<td><%=login %></td>
 									<td><%=nivel %></td>
-									<td><a href=""><img src="../../images/incluir.png"><br>Alterar</a></td>
-									<td><a href=""><img src="../../images/excluir.png"><br>Excluir</a></td>
+									<td><a href="#" onclick="carregarDados('<%=nome %>', '<%=login %>','<%=nivel%>')"><img src="../../images/editar.png"><br>Alterar</a></td>
+									<td><a href="../../ExcluiUsuario?login=<%=login%>" onclick="return confirm('Tem deseja certeza que deseja excluir esse usuário?')"><img src="../../images/excluir.png"><br>Excluir</a></td>
+									<%
+										if(i==0){%>
+											<td rowspan="<%=us.size()%>"> <a href="#"  onclick="novoUsuario()"><img src="../../images/incluir.png"><br>Novo<br>usuário</a></td>
+										<%i=1;}
+									%>
 								</tr>
-							<%	} %>
+							<%} %>
 							</table>
+							
 							<br>
-							<div style="margin-left:180px"><h3>Ou click <a href="#" id="">aqui</a> para adicionar um novo usuário</h3></div>
+							<div style="margin-left:180px"><h3>Ou click <a href="#">aqui</a> para adicionar um novo usuário</h3></div>
 						</div>
 						<!-- <br><br>-->
 						<script type="text/javascript">
-							$('#dataTable a').click(function(){
-								$('#dataTable').slideUp("slow");
-								$('#novoUsuario').show();
-							});
+							function novoUsuario(){
+								$('#dataTable').hide('slow');
+								$('#atualizarUsuario').hide('slow');
+								$("#novoUsuario").show('slow');
+							}
 						</script>
 							<%}%>
 						<div id="novoUsuario">
@@ -121,8 +130,8 @@
 								</form>
 								<script type="text/javascript">
 									$("#back").click(function(){
-										$("#dataTable").slideDown();	
-										$("#novoUsuario form").hide();	
+										$("#dataTable").show('slow');	
+										$("#novoUsuario").hide('show');	
 									});
 									$(document).ready( function(){
 										$("#form").validate({
@@ -147,14 +156,55 @@
 												login:{
 													required: "Login é obrigatorio"
 												}
-						
+
 											}
 									});
 								});
-			
-			
 							</script>
-						</div>
+							</div>
+							<div id="atualizarUsuario">
+								<br><br>	
+								<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
+									<label>Nome: </label><input type="text" name="nome" id="nome" class="nome"><br>
+									<label>Login: </label><input type="text" name="login" id="login" class="llogin"><br>
+									<label>Nivel: </label>
+									<select name="nivel" id="nivel">
+										<option value="1">GESTOR</option>
+										<option value="2">SUPERVISOR</option>
+										<option value="3">PROFESSOR</option>
+									</select>
+									<br><br><br>
+									<input type="submit" value="Cadastrar">
+									<input type="reset" value="Limpar">
+									<input type="button" value="back" id="back">
+								</form>
+							</div>
+							<script type="text/javascript">
+								function carregarDados(nome, login, nivel){
+									$('#dataTable').hide('slow');
+									$("#atualizarUsuario").show();	
+									$("#atualizarUsuario form input:text.nome").val(nome);
+									$("#atualizarUsuario form input:text.llogin").val(login);
+									switch(nivel){
+										case 'GESTOR':
+											$("#atualizarUsuario form select option:selected").val('1');
+											break;
+										
+										case 'SUPERVISOR':
+											$("#atualizarUsuario form select option:selected").val('2');
+											break;
+											
+										case 'PROFESSOR':
+											$("#atualizarUsuario form select option:selected").val('3');
+											break;
+									}
+								}
+								
+								$("#atualizarUsuario #back").click(function(){
+									$("#dataTable").show('slow');	
+									$("#atualizarUsuario").hide('show');	
+								});
+							</script>
 					</div>
 				</div>
 			</div>

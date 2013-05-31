@@ -74,7 +74,7 @@ public class ControleAcesso extends HttpServlet {
 
 					case "SUPERVISOR":
 						session.setAttribute("usuario", usuario);
-						response.sendRedirect("pages/supervisor/");
+						response.sendRedirect("pages/supervisor/salas.jsp");
 						break;
 
 					default:

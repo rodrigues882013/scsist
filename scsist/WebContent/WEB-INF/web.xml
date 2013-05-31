@@ -92,6 +92,13 @@
 		<servlet-name>EncerraAcesso</servlet-name>
 		<servlet-class>controller.EncerraAcesso</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>TesteServlet</display-name>
+		<servlet-name>TesteServlet</servlet-name>
+		<servlet-class>controller.TesteServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>teste</servlet-name>
 		<url-pattern>/teste</url-pattern>
@@ -143,6 +150,10 @@
 	<servlet-mapping>
 		<servlet-name>EncerraAcesso</servlet-name>
 		<url-pattern>/EncerraAcesso</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TesteServlet</servlet-name>
+		<url-pattern>/TesteServlet</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

@@ -269,7 +269,7 @@ background-image: -webkit-gradient(
 #menu {
 	height: 45px;
 	width: 1000px;
-	position: relative;
+	position: relative; 
 }
 
 /*Aqui começa o efeito da pagina com fade*/
@@ -439,7 +439,7 @@ background-image: -webkit-gradient(
     overflow: hidden;
     border-radius: 5px;
 	float:left;
-	margin:5px 0 0 0;5
+	margin:5px 0 0 0;
 }	
 input[type=checkbox] {
     display: none;
@@ -578,7 +578,7 @@ table{
 }
 
 
-th{background: #000000; color:#FFFFFF; font-weight:bold;}
+th{background: #000000; color:#FFFFFF; font-weight:bold; font-size: 20px;}
 td{text-align: center;}
 tbody tr{background:#EFEFEF;}
 tbody td:hover{background:#CFCFCF;color:#FFFFFF;}
@@ -670,6 +670,8 @@ ul.MenuBarHorizontal a
 	color: #333;
 	text-decoration: none;
 	border: 1px solid #CFCFCF;
+	
+	
 }
 /* Menu items that have mouse over or focus have a blue background and white text */
 ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus

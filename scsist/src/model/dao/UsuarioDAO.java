@@ -60,7 +60,7 @@ public class UsuarioDAO {
 			con.iniciaBD();	
 			c = con.getConexao();
 			c.setAutoCommit(false); 
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("DELETE usuario WHERE login= " + "(?)"); 
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("DELETE usuario WHERE login=?"); 
 			ps.setString(1, u.getLogin());
 			ps.close();
 			c.close();
