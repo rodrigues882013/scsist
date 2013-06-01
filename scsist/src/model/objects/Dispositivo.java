@@ -4,7 +4,14 @@ public class Dispositivo {
 	private Estado estado;
 	private Integer numero;
 	private Sala sala;
+	private double potencia;
 	
+	public double getPotencia() {
+		return potencia;
+	}
+	public void setPotencia(double potencia) {
+		this.potencia = potencia;
+	}
 	public Dispositivo() {
 		
 	}

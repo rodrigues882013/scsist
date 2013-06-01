@@ -32,13 +32,16 @@
 
 		<div id="corpo">	
 			<div id="menuc">
+					<div id="left-side">
+						<img src="../../images/logo4.png">
+					</div>
 					<div id="right-side">
 						<img src="../../images/avatar.gif" alt="user icon" />&ensp;
 							<a href="#" class="first"><%=u.getNome()%></a>&ensp;
 							<a href="#">Alterar dados</a>&ensp;
-							<a href="#">Sair</a> &emsp;
-						</div>
+							<a href="../../EncerraAcesso">Sair</a> &emsp;
 					</div>
+			</div>
 		</div>
 		<div align="center">
 			<div class="menu" id="menu"> 

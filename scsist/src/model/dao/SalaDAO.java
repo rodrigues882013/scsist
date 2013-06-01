@@ -3,12 +3,12 @@ package model.dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-
 import model.objects.Nivel;
 import model.objects.Sala;
 import model.objects.Usuario;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 
 
 
@@ -22,14 +22,14 @@ public class SalaDAO {
 			con = Conexao.getInstancia();
 			con.iniciaBD();
 			Connection c = con.getConexao();
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("UPDATE sala SET (numero=?, ip=?, mac=?, id_usuario=?) WHERE numero=?"); 
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("UPDATE sala SET numero=?, ip=?, mac=?, id_usuario=? WHERE numero=?"); 
 			ps.setInt(1, S.getNumero());
 			ps.setString(2, S.getIp());
 			ps.setString(3, S.getMac());
 			//<-----------------------------------------------Recuperando dados do usuario --------------------------------------->
 			PreparedStatement ps2 = (PreparedStatement) c.prepareStatement("SELECT*FROM usuario WHERE login=?"); 
 			ps2.setString(1, S.getUsuario().getLogin());
-			ResultSet res = (ResultSet) ps.executeQuery();
+			ResultSet res = (ResultSet) ps2.executeQuery();
 			res.next();
 			u = new Usuario();
 			u.setLogin((String)res.getString("login"));
@@ -43,6 +43,7 @@ public class SalaDAO {
 			u.setSenha((String)res.getString("senha"));
 			//<------------------------------------------------------------------------------------------------------------------->
 			ps.setString(4, S.getUsuario().getLogin());
+			ps.setInt(5, S.getNumero());
 			ps.executeUpdate();
 			ps.close();
 			c.close();
@@ -59,5 +60,28 @@ public class SalaDAO {
 		}
 	}
 	public synchronized static ArrayList<Sala> selectAll() {return null;}
-	public synchronized static Sala selectByID(int sala){return null;}
+	public synchronized static Sala selectByID(int sala) throws Exception{
+		Conexao con = null;
+		Sala s;
+		try{
+			con = Conexao.getInstancia();
+			con.iniciaBD();
+			Connection c = con.getConexao();
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM sala WHERE id=?");
+			ps.setInt(1, sala);
+			ResultSet res = (ResultSet)ps.executeQuery();
+			res.next();
+			s = new Sala();
+			s.setNumero(res.getInt("numero"));
+			s.setIp(res.getString("ip"));
+			s.setMac(res.getString("mac"));
+			s.setUsuario(UsuarioDAO.selectById(res.getString("id_usuario")));
+			s.setDispositivos(DispositivoDAO.selectBySala(sala));
+			return s;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }

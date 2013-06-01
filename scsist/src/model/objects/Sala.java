@@ -6,16 +6,16 @@ public class Sala {
 	private Integer numero;
 	private String ip;
 	private String mac;
+	private ArrayList<Dispositivo> dispositivos;
+	private Usuario usuario;
+	private String imagem; //String representando o caminho do arquivo de image
+	
 	public String getMac() {
 		return mac;
 	}
 	public void setMac(String mac) {
 		this.mac = mac;
 	}
-	private ArrayList<Dispositivo> dispositivos;
-	private Usuario usuario;
-	private String imagem; //String representando o caminho do arquivo de image
-	
 	
 	public String getImagem() {
 		return imagem;

@@ -195,16 +195,16 @@
 				
 			<a class="close-reveal-modal">&#215;</a>
 		</div>
-		
+		<%String login = (String)u.getLogin(); %>
 		<script type="text/javascript">
 				$("#myModal #couch a").click(function(){
 					var liga = "<img src='../../images/on.png'/>";
 					var desliga = "<img src='../../images/off.png'/>";
 					alert("acertei");	
 					$.ajax({
-						url : '../../TesteServlet',
+						url : '../../AlterarEstados',
 						type : 'POST',
-						data : 'grupo=1&id=1',
+						data : "grupo=1&id=1&usuario=" + "<%=login%>",
 						dataType : 'json',
 						success : function(response){
 							if (response == "1"){
@@ -241,6 +241,4 @@
 else{
 		response.sendRedirect("../../");
 }
-
-
 %>
