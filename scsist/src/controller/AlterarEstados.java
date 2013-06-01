@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import com.google.gson.Gson;
 import model.dao.DemonstrativoDAO;
 import model.dao.DispositivoDAO;
 import model.dao.SalaDAO;
@@ -87,8 +87,14 @@ public class AlterarEstados extends HttpServlet {
 							if (state == 1)estado = "LIGADO";
 							if (state == 0)estado = "DESLIGADO";
 							if (state == -1)estado = "FALHA";
-							session.setAttribute("state", estado);
-							response.sendRedirect("index.jsp");
+							
+							//Envia a resposta via json para a pagina que requisitou
+							String json = new Gson().toJson(estado);
+							response.setContentType("application/json"); 
+							response.setCharacterEncoding("utf-8"); 
+							response.getWriter().write(json);
+							//session.setAttribute("state", estado);
+							//response.sendRedirect("index.jsp");
 						}
 					}
 				}
@@ -119,8 +125,14 @@ public class AlterarEstados extends HttpServlet {
 								if (state == 1)estado = "LIGADO";
 								if (state == 0)estado = "DESLIGADO";
 								if (state == -1)estado = "FALHA";
-								session.setAttribute("state", estado);
-								response.sendRedirect("index.jsp");
+								
+								//Envia a resposta via json para a pagina que requisitou
+								String json = new Gson().toJson(estado);
+								response.setContentType("application/json"); 
+								response.setCharacterEncoding("utf-8"); 
+								response.getWriter().write(json);
+								//session.setAttribute("state", estado);
+								//response.sendRedirect("index.jsp");
 							}
 						}
 					}
@@ -150,8 +162,13 @@ public class AlterarEstados extends HttpServlet {
 								if (state == 1)estado = "LIGADO";
 								if (state == 0)estado = "DESLIGADO";
 								if (state == -1)estado = "FALHA";
-								session.setAttribute("state", estado);
-								response.sendRedirect("index.jsp");
+								//Envia a resposta via json para a pagina que requisitou
+								String json = new Gson().toJson(estado);
+								response.setContentType("application/json"); 
+								response.setCharacterEncoding("utf-8"); 
+								response.getWriter().write(json);
+								//session.setAttribute("state", estado);
+								//response.sendRedirect("index.jsp");
 							}
 						}
 					}

@@ -32,8 +32,13 @@
 
 		<div id="corpo">	
 			<div id="menuc">
-					<strong>Sistema de Controle das Salas do IST-Rio/FAETERJ</strong>
-			</div>
+					<div id="right-side">
+						<img src="../../images/avatar.gif" alt="user icon" />&ensp;
+							<a href="#" class="first"><%=u.getNome()%></a>&ensp;
+							<a href="#">Alterar dados</a>&ensp;
+							<a href="#">Sair</a> &emsp;
+						</div>
+					</div>
 		</div>
 		<div align="center">
 			<div class="menu" id="menu"> 

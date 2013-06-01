@@ -112,7 +112,15 @@
 
 		<div id="corpo">	
 			<div id="menuc">
-					<strong>Sistema de Controle das Salas do IST-Rio/FAETERJ</strong>
+					<div id="left-side">
+						<img src="../../images/logo4.png">
+					</div>
+					<div id="right-side">
+						<img src="../../images/avatar.gif" alt="user icon" />&ensp;
+							<a href="#" class="first"><%=u.getNome()%></a>&ensp;
+							<a href="#">Alterar dados</a>&ensp;
+							<a href="../../EncerraAcesso">Sair</a> &emsp;
+					</div>
 			</div>
 		</div>
 		<div align="center">
@@ -126,20 +134,7 @@
   			</div>
   		</div>
  		<br>
- 		<div style="margin-left:180px;"><h1>Gerenciamento de salas</h1></div>
- 		<div id="estado">
- 			Ola <%=nome%>
- 		</div>
- 		<div id="estadoAba">
- 			
- 		</div>
- 		<script type="text/javascript">
- 			
- 			$("#estadoAba").mouseover(function(){
- 				$(this).hide();
- 				$("#estado").show("slow");
- 			});
- 		</script>
+ 		
 		<div id="conteudo">
 			<br><br>
 			<div class="content" style="margin-left:150px;">	
