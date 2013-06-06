@@ -46,8 +46,9 @@
 		<div align="center">
 			<div class="menu" id="menu"> 
   				<ul id="MenuBar1" class="MenuBarHorizontal">
+   	  				<li><a href="salas.jsp">Controlar Salas</a></li>
    	  				<li><a href="demonstrativos.jsp" >Demonstrativo</a></li>
-      				<li><a href="salas.jsp">Gerenciar Salas</a></li>
+      				<li><a href="">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
       				<li><a href="">Suporte</a></li>
     			</ul>

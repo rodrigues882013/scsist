@@ -255,8 +255,12 @@ a:hover {
 	background-image: -webkit-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
 	background-image: -ms-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
 	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.44, rgb(2,33,48)),color-stop(0.72, rgb(3,5,20)));*/
-	background-color: rgb(2,33,48);
+	background-color: rgba(2,33,48,0.88);
 }
+.error{
+	color: red;
+}
+
 #right-side {
 	float: right;
 	padding-top: 4px;
@@ -268,8 +272,8 @@ a:hover {
 	float: left;
 	height:93px;
 	witdh: 172px;
-	margin-left: 20px;
-	margin-top:-10px;
+	margin-left: 10px;
+	margin-top:-5px;
 	padding-top: 4px;
 }
 #right-side img {
@@ -300,7 +304,7 @@ a:hover {
 
 #menu {
 	height: 45px;
-	width: 1000px;
+	width: 1251px;
 	position: relative; 
 }
 
@@ -405,7 +409,7 @@ input{
 	margin-bottom:10px;
 }
 #box{
-/*background:url(../images/shape.png) no-repeat center;*/
+/*background:url(../images/shape.png) no-repeat center;
 background-image: linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
 background-image: -o-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
 background-image: -moz-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
@@ -418,8 +422,8 @@ background-image: -webkit-gradient(
 	left top,
 	color-stop(0.44, rgb(2,33,48)),
 	color-stop(0.72, rgb(3,5,20))
-)
-	background-color:#000;
+)*/
+	background-color: rgba(2,33,48,0.88);
 	margin-left: 25%;
 	/*width:360px;*/
 	width:80%;
@@ -539,8 +543,9 @@ table{
 
 }
 
+	
 
-th{background: #000000; color:#FFFFFF; font-weight:bold; font-size: 20px;}
+th{background: rgba(2,33,48,0.88);; color:#FFFFFF; font-weight:bold; font-size: 20px;}
 td{text-align: center;}
 tbody tr{background:#EFEFEF;}
 tbody td:hover{background:#CFCFCF;color:#FFFFFF;}

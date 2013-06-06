@@ -47,10 +47,10 @@ public class ChangeState extends HttpServlet {
 			
 			if (DispositivoDAO.update(a,b)){
 				Client client = Client.getClient();
-				Integer state = client.changeState(b);
+				//Integer state = client.changeState(b);
 				//client.closeClient();
 				//System.out.println(state);
-				session.setAttribute("state", state);
+				//session.setAttribute("state", state);
 				response.sendRedirect("index.jsp");
 			}
 		}

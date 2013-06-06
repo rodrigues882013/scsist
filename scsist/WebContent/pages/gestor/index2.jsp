@@ -81,16 +81,19 @@
 		<div align="center">
 		<div class="menu" id="menu"> 
   			<ul id="MenuBar1" class="MenuBarHorizontal">
+   	  		<li><a href="salas.jsp">Controlar Salas</a></li>
    	  		<li><a href="" >Demonstrativo</a></li>
-      		<li><a href="">Gerenciar Salas</a></li>
+      		<li><a href="gerenciaSalas.jsp">Gerenciar Salas</a></li>
       		<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
       		<li><a href="">Suporte</a></li>
     		</ul>
   		</div>
   		</div>
  
-		<div id="conteudo">
-			<div class="content">
+		<div id="conteudo" style="width:80%;">
+			<div align="justify" style="margin-left:20%;margin-top:-10px;">
+				<p>Seja bem vindo gestor, é um prazer poder ajuda-lo, pro favor click em um dos links acime no menu de opções para ser redirecionado para a opção que deseja.
+				Seja cauteloso, seus dados estão sendo gravados.
 			</div>
 		</div>
 	</div>

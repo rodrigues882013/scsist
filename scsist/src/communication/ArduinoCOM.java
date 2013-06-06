@@ -5,25 +5,24 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class Client {
+public class ArduinoCOM {
 	private Socket client;
 	private BufferedReader  in;
 	private DataOutputStream out;
-	private static Client instance;
+	private static ArduinoCOM instance;
 
 	//Estabelece comunicacao entre o cliente em java e o servidor (arduino)
-	private Client() throws Exception{
-		this.client = new Socket("10.1.1.18", 90);
+	private ArduinoCOM(String Ip) throws Exception{
+		this.client = new Socket(Ip, 90);
 		this.out = new DataOutputStream(client.getOutputStream());
 		this.in = new BufferedReader(new InputStreamReader(client.getInputStream()));//
 
 	}
 	
-	public static Client getClient() throws Exception {
+	public static ArduinoCOM getClient(String Ip) throws Exception {
 		if (instance == null){
-			instance = new Client();
+			instance = new ArduinoCOM(Ip);
 		}
-		
 		return instance;
 		
 	}
@@ -46,31 +45,32 @@ public class Client {
 	 * Altera o estado de um determinado elemento sendo:*
 	 * 	0 - Desligado									*
 	 *  1 - Ligado										*
-	 * -1 - Falha         								*
+	 * -1 - Falha         								
+	 * @throws Exception *
 	 ***************************************************/
-	public Integer changeState(String estado, String grupo){
+	public int changeState(String estado, String grupo) throws Exception{
 		try {
 			String state = "";
-			if (estado.compareTo("LIGADO") == 0)state = "1";
-			if (estado.compareTo("DESLIGADO") == 0)state = "0";
-			if (estado.compareTo("FALHA") == 0)state = "-1";
+			if (estado.compareTo("1") == 0)state = "1";
+			if (estado.compareTo("0") == 0)state = "0";
+			if (estado.compareTo("-1") == 0)state = "-1";
 			String codigo = grupo + state;
 			this.out.writeBytes(codigo); 
-			Integer situation = Integer.parseInt(this.in.readLine());
+			int situation = Integer.parseInt(this.in.readLine());
 			System.out.println(situation);
 			if(situation == 0){ 
 				//Desligado
 				return 0;
 			}
-			else{
-				//Ligado
-				return 1;
-			}
+			
+			//Ligado
+			return 1;
+			
 		}
 		catch (Exception e) {
 			//Falha
 			e.printStackTrace();
-			return -1;
+			throw e;
 		}
 	}
 }

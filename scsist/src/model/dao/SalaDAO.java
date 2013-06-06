@@ -59,7 +59,35 @@ public class SalaDAO {
 			con.fechaBd();
 		}
 	}
-	public synchronized static ArrayList<Sala> selectAll() {return null;}
+	public synchronized static ArrayList<Sala> selectAll() throws Exception {
+		Conexao con = null;
+		Sala s;
+		ArrayList<Sala> salas = new ArrayList<Sala>();
+		try{
+			con = Conexao.getInstancia();
+			con.iniciaBD();
+			Connection c = con.getConexao();
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM sala");
+			ResultSet res = (ResultSet)ps.executeQuery();
+			while(res.next()){
+				s = new Sala();
+				s.setNumero(res.getInt("numero"));
+				s.setIp(res.getString("ip"));
+				s.setMac(res.getString("mac"));
+				//s.setUsuario(UsuarioDAO.selectById(res.getString("id_usuario")));
+				s.setDispositivos(DispositivoDAO.selectBySala(s.getNumero()));
+				salas.add(s);
+			}
+			ps.close();
+			c.close();
+			con.fechaBd();
+			return salas;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	public synchronized static Sala selectByID(int sala) throws Exception{
 		Conexao con = null;
 		Sala s;

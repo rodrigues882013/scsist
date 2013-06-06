@@ -69,18 +69,13 @@
 
 		<div id="geral">
 
-			<div id="corpo">
-			
-				<div id="menuc">
-					
-				
-					<h1></h1><strong>Bem vindo!!</strong></h1>
-					<div id="logo"></div>
-				</div>
-			
-				
-
+			<div id="corpo">	
+			<div id="menuc">
+					<div id="left-side">
+						<img src="images/logo4.png">
+					</div>
 			</div>
+		</div>
 		
 			<div id="conteudo">
 				<div class="content">
@@ -112,8 +107,8 @@
 				</div>
 			</div>
 			</div>
-			<form action="GeraDemonstrativo?tipo=4" method="post">
+			<!-- <form action="GeraDemonstrativo?tipo=4" method="post">
 				<input type="submit">
-			</form>
+			</form>-->
 	</body>
 </html>

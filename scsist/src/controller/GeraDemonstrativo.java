@@ -85,7 +85,7 @@ public class GeraDemonstrativo extends HttpServlet {
 				
 			case "3":
 				try{  
-					String arquivo = context.getRealPath("/WEB-INF/reports/usuarios.jasper");
+					String arquivo = context.getRealPath("/WEB-INF/reports/Usuarios.jasper");
 					JRDataSource jrRS = new JRResultSetDataSource(UsuarioDAO.gerarDemonstrativoUsuarios());
 					ServletOutputStream servletOutputStream = response.getOutputStream();
 					servletOutputStream = response.getOutputStream();

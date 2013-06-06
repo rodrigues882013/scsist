@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.google.gson.Gson;
+
 import model.dao.DemonstrativoDAO;
 import model.dao.DispositivoDAO;
 import model.dao.SalaDAO;
@@ -17,7 +17,9 @@ import model.objects.Demonstrativo;
 import model.objects.Sala;
 import model.objects.Usuario;
 
+import com.google.gson.Gson;
 import communication.Client;
+import communication.ArduinoCOM;
 
 /**
  * Servlet implementation class AlterarEstados
@@ -62,10 +64,10 @@ public class AlterarEstados extends HttpServlet {
 			SalaDAO.update(sala);
 			boolean condicao = true;
 			
-			if (grupo.compareTo("Frente") == 0){ //Parte da frente da iluminação
-				for (int i=0; i<2; i++){
-					sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
+			if (grupo.compareTo("1") == 0){ //Parte da frente da iluminação
+				for (int i=0; i<sala.getDispositivos().size(); i++){
 					if (sala.getDispositivos().get(i) != null){ //Checa se ha pelo menos um dispositivo
+						sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
 						Demonstrativo d = new Demonstrativo();
 						d.setSala(sala);
 						d.setDipositivo(sala.getDispositivos().get(i));
@@ -79,10 +81,10 @@ public class AlterarEstados extends HttpServlet {
 								d.setTempoFim(new Timestamp(System.currentTimeMillis()).toString());
 								condicao = DemonstrativoDAO.update(d);
 							}
-						}
+						} //------------------------Testes---------------------------------------------------
 						if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString()) && condicao){ //Altera o estado na DAO
-							Client client = Client.getClient();
-							Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString()); //Passa o estado para o o communication.Client alterar o estado
+							ArduinoCOM client = ArduinoCOM.getClient(sala.getIp());
+							Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString(), "0"); //Passa o estado para o o communication.Client alterar o estado
 							//System.out.println(state);
 							if (state == 1)estado = "LIGADO";
 							if (state == 0)estado = "DESLIGADO";
@@ -100,10 +102,10 @@ public class AlterarEstados extends HttpServlet {
 				}
 			}
 			else{
-				if (grupo.compareTo("Meio") == 0){ //Parte do Meio
+				if (grupo.compareTo("2") == 0){ //Parte do Meio
 					for (int i=0; i<2; i++){
-						sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
 						if (sala.getDispositivos().get(i) != null){ //Checa se ha pelo menos um dispositivo
+							sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
 							Demonstrativo d = new Demonstrativo();
 							d.setSala(sala);
 							d.setDipositivo(sala.getDispositivos().get(i));
@@ -120,7 +122,7 @@ public class AlterarEstados extends HttpServlet {
 							}
 							if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString()) && condicao){ //Altera o estado na DAO
 								Client client = Client.getClient();
-								Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString()); //Passa o estado para o o communication.Client alterar o estado
+								Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString(), "1"); //Passa o estado para o o communication.Client alterar o estado
 								//System.out.println(state);
 								if (state == 1)estado = "LIGADO";
 								if (state == 0)estado = "DESLIGADO";
@@ -139,8 +141,8 @@ public class AlterarEstados extends HttpServlet {
 				}
 				else{ //Parte de traz
 					for (int i=0; i<2; i++){
-						sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
 						if (sala.getDispositivos().get(i) != null){ //Checa se ha pelo menos um dispositivo
+							sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
 							Demonstrativo d = new Demonstrativo();
 							d.setSala(sala);
 							d.setDipositivo(sala.getDispositivos().get(i));
@@ -157,7 +159,7 @@ public class AlterarEstados extends HttpServlet {
 							}
 							if (DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString()) && condicao){ //Altera o estado na DAO
 								Client client = Client.getClient();
-								Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString()); //Passa o estado para o o communication.Client alterar o estado
+								Integer state = client.changeState(sala.getDispositivos().get(i).getEstado().toString(), "2"); //Passa o estado para o o communication.Client alterar o estado
 								//System.out.println(state);
 								if (state == 1)estado = "LIGADO";
 								if (state == 0)estado = "DESLIGADO";

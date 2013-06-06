@@ -18,11 +18,11 @@ public class DispositivoDAO {
 			con = Conexao.getInstancia();
 			con.iniciaBD();
 			Connection c = con.getConexao();
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM demonstrativo WHERE id=?");
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM demonstrativo WHERE id_sala=? GROUP BY id_dispositivo");
 			ps.setInt(1, num);
 			ResultSet res = (ResultSet) ps.executeQuery();
 			d = new ArrayList<Dispositivo>();
-			res.next();
+			//res.next();
 			while(res.next()){
 				d.add(DispositivoDAO.selectById((res.getInt("id_dispositivo"))));
 			}
@@ -82,9 +82,11 @@ public class DispositivoDAO {
 			con = Conexao.getInstancia();
 			con.iniciaBD();
 			Connection c = con.getConexao();
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("UPDATE dispositivo SET (estado=?) WHERE identificador=?"); 
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("UPDATE dispositivo SET estado=? WHERE indentificador=?"); 
 			ps.setInt(1, Integer.parseInt(identificador));
-			ps.setInt(2, Integer.parseInt(estado));
+			if (estado.compareTo("DESLIGADO") == 0) ps.setInt(2, 1);
+			if (estado.compareTo("LIGADO") == 0) ps.setInt(2, 0);
+			
 			ps.executeUpdate();
 			ps.close();
 			c.close();
@@ -116,7 +118,7 @@ public class DispositivoDAO {
 			if (aux == 1)d.setEstado(Estado.LIGADO);
 			if (aux == 0)d.setEstado(Estado.DESLIGADO);
 			if (aux == -1)d.setEstado(Estado.INATIVO);
-			d.setNumero(res.getInt("numero"));
+			d.setNumero(res.getInt("indentificador"));
 			d.setPotencia(res.getFloat("potencia"));
 			ps.close();
 			c.close();

@@ -22,7 +22,7 @@
 		<link type="text/css" rel="stylesheet" media="all" href="../../styles/jquery-ui.css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js" type="text/javascript"></script>
 		<script type="text/javascript" src="../../scripts/jquery-ui.js"></script>
-		<script type="text/javascript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../scripts/jquery.validate.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"../../scripts/SpryMenuBarDownHover.gif", imgRight:"../../scripts/SpryMenuBarRightHover.gif"});
 			setInterval ("window.status = ''",10);
@@ -35,6 +35,89 @@
 
 
 		</script>
+		<style>
+			fieldset{
+				border-radius: 10px;
+				padding: 20px;
+			}
+			input{
+				border:1;
+				outline:0;
+				color:#000;
+				margin-bottom:5px;
+				padding: 5px;
+			}
+			input[type=button]{
+				color: #FFF;
+    			margin-left: 10px;
+    			background: rgba(2,33,46,0.91);
+    			padding: 3px 13px;
+    			display: inline-block;
+    			font-size: 14px;
+   				clear: both;
+    			border-radius:5px;
+    			font-weight: bold;
+   				width: 102px;
+                
+			}
+ 			input[type=button]:hover{
+    			text-decoration: none;
+    			cursor: pointer;
+    			color: #FFF;
+    			background:#5b829d;
+			}
+			input[type=reset]{
+				color: #FFF;
+    			margin-left: 10px;
+    			background: rgba(2,33,48,0.88);
+    			padding: 3px 13px;
+    			display: inline-block;
+    			font-size: 14px;
+   				clear: both;
+    			border-radius:5px;
+    			font-weight: bold;
+   				width: 102px;
+                
+			}
+ 			input[type=reset]:hover{
+    			text-decoration: none;
+    			cursor: pointer;
+    			color: #FFF;
+    			background:#5b829d;
+			}
+			input[type=text]{
+    			color: #000;
+    			max-length: 27px;
+    			width: 500px;
+    			
+    			
+			}
+			input[type=password]{
+    			text-decoration: none;
+    			color: #FFF;
+    			max-length: 27px;
+    			width: 200px;
+    			
+			}
+			input[type=submit]{
+				color: #FFF;
+    			margin-left: 10px;
+    			background: rgba(2,33,48,0.88);
+    			padding: 3px 13px;
+    			display: inline-block;
+    			font-size: 14px;
+    			clear: both;
+    			border-radius:5px;
+    			font-weight: bold;
+    			width: 102px;
+                }
+ 			input[type=submit]:hover{
+    			text-decoration: none;
+    			cursor: pointer;
+    			color: #FFF;
+    			background:#5b829d;
+		}
+		</style>
 
 	</head>
 
@@ -56,8 +139,9 @@
 		<div align="center">
 			<div class="menu" id="menu"> 
   				<ul id="MenuBar1" class="MenuBarHorizontal">
+  					<li><a href="salas.jsp">Controlar Salas</a></li>
    	  				<li><a href="demonstrativos.jsp">Demonstrativo</a></li>
-      				<li><a href="salas.jsp">Gerenciar Salas</a></li>
+      				<li><a href="">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
       				<li><a href="">Suporte</a></li>
     			</ul>
@@ -66,7 +150,7 @@
  		<br>
  		<div style="margin-left:180px;"><h1>Gerenciamento de usuários</h1></div>
 		<div id="conteudo">
-			<div class="content">	
+			<div class="content" style="margin-left:35%;">	
 						<%
 							if (us != null){
 						%>
@@ -104,7 +188,7 @@
 							</table>
 							
 							<br>
-							<div style="margin-left:180px"><h3>Ou click <a href="#">aqui</a> para adicionar um novo usuário</h3></div>
+							<!-- <div style="margin-left:180px"><h3>Ou click <a href="#">aqui</a> para adicionar um novo usuário</h3></div> -->
 						</div>
 						<!-- <br><br>-->
 						<script type="text/javascript">
@@ -121,10 +205,12 @@
 							<%} %>
 								<br><br>	
 								<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
-									<label>Nome: </label><input type="text" name="nome" id="nome"><br>
-									<label>Login: </label><input type="text" name="login" id="login"><br>
-									<label>Senha: </label><input type="password" name="senha" id="senha"><br>
-									<label>Nivel: </label>
+									<fieldset>
+									<legend>Inserir Usuário</legend>
+									<label>Nome: </label><br><input type="text" name="nome" id="nome"><br>
+									<label>Login: </label><br><input type="text" name="login" id="login"><br>
+									<label>Senha: </label><br><input type="password" name="senha" id="senha"><br>
+									<label>Nivel: </label><br>
 									<select name="nivel" id="nivel">
 										<option value="1">GESTOR</option>
 										<option value="2">SUPERVISOR</option>
@@ -134,6 +220,7 @@
 									<input type="submit" value="Cadastrar">
 									<input type="reset" value="Limpar">
 									<input type="button" value="back" id="back">
+									</fieldset>
 								</form>
 								<script type="text/javascript">
 									$("#back").click(function(){
@@ -141,7 +228,7 @@
 										$("#novoUsuario").hide('show');	
 									});
 									$(document).ready( function(){
-										$("#form").validate({
+										$("#form2").validate({
 											rules:{
 												nome:{
 														required: true
@@ -164,26 +251,30 @@
 													required: "Login é obrigatorio"
 												}
 
-											}
+											}										
 									});
+									
 								});
 							</script>
 							</div>
 							<div id="atualizarUsuario">
 								<br><br>	
 								<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
-									<label>Nome: </label><input type="text" name="nome" id="nome" class="nome"><br>
-									<label>Login: </label><input type="text" name="login" id="login" class="llogin"><br>
-									<label>Nivel: </label>
+									<fieldset>
+									<legend>Alterar Usuário</legend>
+									<label>Nome: </label><br><input type="text" name="nome" id="nome" class="nome"><br>
+									<label>Login: </label><br><input type="text" name="login" id="login" class="llogin"><br>
+									<label>Nivel: </label><br>
 									<select name="nivel" id="nivel">
 										<option value="1">GESTOR</option>
 										<option value="2">SUPERVISOR</option>
 										<option value="3">PROFESSOR</option>
 									</select>
 									<br><br><br>
-									<input type="submit" value="Cadastrar">
+									<input type="submit" value="Atualizar">
 									<input type="reset" value="Limpar">
-									<input type="button" value="back" id="back">
+									<input type="button" value="Voltar" id="back">
+									</fieldset>
 								</form>
 							</div>
 							<script type="text/javascript">
