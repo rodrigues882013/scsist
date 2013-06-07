@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import model.objects.Dispositivo;
@@ -133,5 +134,36 @@ public class DispositivoDAO {
 			con.fechaBd();
 		}
 	}
+	public synchronized static HashMap<Integer, String> listaTipos() throws Exception{
+		Conexao con = null;
+		HashMap<Integer, String> m = new HashMap<Integer, String>();
+		try{
+			con = Conexao.getInstancia();
+			con.iniciaBD();
+			Connection c = con.getConexao();
+			PreparedStatement ps = (PreparedStatement)  c.prepareStatement("SELECT*FROM tipos"); 
+			ResultSet res = (ResultSet)ps.executeQuery();
+			
+			
+			while(res.next()){
+				int id = res.getInt("id");
+				String tipo = res.getString("tipo");
+				m.put(id, tipo);
+			}
+			ps.close();
+			c.close();
+
+			return m;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw e;
+			//return false;
+		}
+		finally{
+			con.fechaBd();
+		}
+	}
+
 	
 }

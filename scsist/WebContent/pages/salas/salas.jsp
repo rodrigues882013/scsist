@@ -31,10 +31,6 @@
         <script src="../../scripts/liteaccordion.jquery.js"></script>
         
 		<script type="text/javascript">
-			var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"../../scripts/SpryMenuBarDownHover.gif", imgRight:"../../scripts/SpryMenuBarRightHover.gif"});
-			setInterval ("window.status = ''",10);
-		</script>
-		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#estado").hide();
 			});
@@ -123,22 +119,12 @@
 					</div>
 			</div>
 		</div>
-		<div align="center">
-			<div class="menu" id="menu"> 
-  				<ul id="MenuBar1" class="MenuBarHorizontal">
-  					<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Controlar Salas</a></li>
-   	  				<li><a href="demonstrativos.jsp" >Demonstrativo</a></li>
-      				<li><a href="gerenciarSalas.jsp">Gerenciar Salas</a></li>
-      				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
-      				<li><a href="">Suporte</a></li>
-    			</ul>
-  			</div>
-  		</div>
- 		<br>
- 		
+		
 		<div id="conteudo">
+			
 			<br><br>
 			<div class="content" style="margin-left:150px;">	
+				<h2>Click na foto para ter acesso a sala</h2>
 				<div id="js_version" class="accordion">
             <ol>
                 <li data-slide-name="slide1">
@@ -150,31 +136,31 @@
                 <li data-slide-name="slide2">
                     <h2><span>Hibrida 2</span></h2>
                     <div>
-                        <img src="../../images/h3_02.jpg" alt="Multipla" width="750" />
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
                     </div>
                 </li>
                 <li data-slide-name="slide3">
                     <h2><span>Hibrida 3</span></h2>
                     <div>
-                       <img src="../../images/h3_02.jpg" alt="Multipla" width="750" />
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
                     </div>
                 </li>
                 <li data-slide-name="slide4">
                     <h2><span>Hibrida 4</span></h2>
                     <div>
-                        <img src="../../images/h3_02.jpg" alt="Multipla" width="750" />
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
                     </div>
                 </li>
                 <li data-slide-name="slide4">
                     <h2><span>Hibrida 5</span></h2>
                     <div>
-                        <img src="../../images/h3_02.jpg" alt="Multipla" width="750" />
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
                     </div>
                 </li>
                 <li data-slide-name="slide5">
                     <h2><span>Sala Múltipla</span></h2>
                     <div>
-                        <img src="../../images/h3_02.jpg" alt="Multipla" width="750" />
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
                     </div>
                 </li>
             </ol>
@@ -196,16 +182,16 @@
 				
 			<a class="close-reveal-modal">&#215;</a>
 		</div>
-		<%String login = (String)u.getLogin(); %>
+		
 		<script type="text/javascript">
 				$("#myModal #couch a").click(function(){
 					var liga = "<img src='../../images/on.png'/>";
 					var desliga = "<img src='../../images/off.png'/>";
 					alert("acertei");	
 					$.ajax({
-						url : '../../AlterarEstados',
+						url : '../../TesteServlet',
 						type : 'POST',
-						data : "grupo=1&id=1&usuario=" + "<%=login%>",
+						data : 'grupo=1&id=1',
 						dataType : 'json',
 						success : function(response){
 							if (response == "1"){
@@ -242,4 +228,6 @@
 else{
 		response.sendRedirect("../../");
 }
+
+
 %>

@@ -259,6 +259,7 @@ a:hover {
 }
 .error{
 	color: red;
+	padding: 6px;
 }
 
 #right-side {
@@ -643,7 +644,7 @@ ul.MenuBarHorizontal a
 /* Menu items that have mouse over or focus have a blue background and white text */
 ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus
 {
-	background-image: background-image: linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
+	/*background-image: background-image: linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
 background-image: -o-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
 background-image: -moz-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
 background-image: -webkit-linear-gradient(bottom, rgb(2,33,48) 44%, rgb(3,5,20) 72%);
@@ -655,8 +656,8 @@ background-image: -webkit-gradient(
 	left top,
 	color-stop(0.44, rgb(2,33,48)),
 	color-stop(0.72, rgb(3,5,20))
-                                   );
-	
+                                   );*/
+	background-color: rgba(2,33,48,0.88);
 	color: #FFF;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }

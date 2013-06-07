@@ -3,11 +3,13 @@
 <%@page import="model.objects.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
+<%@page import="java.util.HashMap"%>
 
 
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	ArrayList<Sala> us = (ArrayList<Sala>) session.getAttribute("salas");
+	HashMap<Integer, String> dispositivos = (HashMap<Integer, String>) session.getAttribute("dispositivos");
 	if (u != null){
 %>
 
@@ -33,7 +35,14 @@
 				$("#numLamp").hide();
 				$("#novoUsuario").hide();	
 				$("#atualizarUsuario").hide();	
-				$("#qtdIlum").hide();	
+				$("#qtdIlum").hide();
+				$("#numAr").hide();
+				$("#qtdAr").hide();
+				$("#potenciaLamp").hide();
+				$("#potenciaLuz").hide();
+				$("#potenciaAr").hide();
+				$("#potenciaCond").hide();
+
 			});
 
 
@@ -42,16 +51,25 @@
 			fieldset{
 				border-radius: 10px;
 				padding: 20px;
+				width: 500px;
+				background: #EFEFEF;
 			}
 			input{
-				border:1;
+				border:1px;
 				outline:0;
 				color:#000;
 				margin-bottom:5px;
 				padding: 5px;
+				border-color: #000;
+				
+				
 			}
 			#qtdIlum{
-				width:20px;
+				width:30px;
+			}
+			
+			#qtdAr{
+				width:30px;
 			}
 			input[type=checkbox]{
 				color: #FFF;
@@ -74,6 +92,7 @@
     			border-radius:5px;
     			font-weight: bold;
    				width: 102px;
+   				
                 
 			}
  			input[type=button]:hover{
@@ -103,9 +122,11 @@
 			}
 			input[type=text]{
     			color: #000;
-    			max-length: 27px;
-    			width: 500px;
-    			
+    			length: 15pt;
+    			width: 250px;
+    			border: 1px solid;
+				border-radius: 5px;
+    			text-align: left;
     			
 			}
 			input[type=password]{
@@ -157,14 +178,13 @@
   				<ul id="MenuBar1" class="MenuBarHorizontal">
   					<li><a href="salas.jsp">Controlar Salas</a></li>
    	  				<li><a href="demonstrativos.jsp">Demonstrativo</a></li>
-      				<li><a href="">Gerenciar Salas</a></li>
+      				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
       				<li><a href="">Suporte</a></li>
     			</ul>
   			</div>
   		</div>
- 		<br>
- 		<div style="margin-left:180px;"><h1>Gerenciamento de usuários</h1></div>
+ 		<br><br><br>
 		<div id="conteudo">
 			<div class="content" style="margin-left:35%;">	
 						<%
@@ -214,41 +234,103 @@
 							}
 						</script>
 							<%}%>
-						<div id="novoUsuario">
+						<div id="novoUsuario" style="margin-left:15%; margin-top: -50px;">
 							<%if (us == null){ %>						
-							Não existem usuário cadastrados no momento, deseja cadastrar um novo usuário?
+							Não existem usuários cadastrados no momento, deseja cadastrar um novo usuário?
 							<%} %>
 								<br><br>	
 								<form method="post" action="../../CadastraSala" name="form1" id="form1">
 									<fieldset>
-									<legend>Cadastrar nova sala</legend>
-									<label>Numero da Sala: </label><br><input type="text" name="num" id="num" class="num"><br>
+									<legend><h2>Cadastrar nova sala</h2></legend>
+									<label>Número da Sala: </label><br><input type="text" name="num" id="num" class="num"><br>
 									<label>Endereço IP: </label><br><input type="text" name="ip" id="ip" class="ip"><br>
-									<label>Endereço MAC: </label><br><input type="text" name="mac" id="mac" class="mac"><br>
-									<label>Dispositivos:</label>
-									<input type="checkbox" name="ar" value="2" id="ar">&nbsp;&nbsp;&nbsp;Ar-condicionado&nbsp;&nbsp;
-									<input type="checkbox" name="iluminacao" value="1" id="ilum">&nbsp;&nbsp;&nbsp;Iluminação<br><br>
-									<legend id="numLamp">Numero de lâmpadas:</legend><input type="text" name="qtdIlum" id="qtdIlum" class="qtdIlum">
-									<br><br><br>
+									<label>Endereço MAC: </label><br><input type="text" name="mac" id="mac" class="mac"><br><br>
+									<label>Dispositivos:</label><br>
+									<%
+										int i = 1;
+										while(i <= dispositivos.size()){
+									%>
+									<input type="checkbox" name='<%=dispositivos.get(i)%>' value='<%=i%>' id='<%=dispositivos.get(i)%>'>&nbsp;&nbsp;&nbsp;<%=dispositivos.get(i)%>&nbsp;&nbsp;
+									<!-- <input type="checkbox" name="iluminacao" value="1" id="ilum">&nbsp;&nbsp;&nbsp;Iluminação<br><br> -->
+									<%		i++;
+										}
+									%>
+									<br><br>
+									<label id="numLamp">Número de lâmpadas:</label>&nbsp;&nbsp;
+									<input type="text" name="qtdIlum" id="qtdIlum" class="qtdIlum">&nbsp;&nbsp;
+									<label id="potenciaLuz">Potência (W):</label>&nbsp;&nbsp;
+									<select id="potenciaLamp">
+										<option>40</option>
+										<option>60</option>
+										<option>120</option>
+									</select>
+									<br><br>
+									<label id="numAr">Número de condicionadores de AR:</label>&nbsp;&nbsp;
+									<input type="text" name="qtdAr" id="qtdAr" class="qtdAr">&nbsp;&nbsp;
+									<label id="potenciaAr">Potência (BTU):</label>&nbsp;&nbsp;
+									<select id="potenciaCond">
+										<option>5000</option>
+										<option>10000</option>
+										<option>15000</option>
+									</select>
+									<br><br>
 									<input type="submit" value="Cadastrar">
-									<input type="reset" value="Limpar">
+									<input type="reset" value="Limpar" id="reset">
 									<input type="button" value="Retornar" id="back">
 									</fieldset>
 								</form>
 								<script type="text/javascript">
 									var i, j = 1;
 									
-									$('#ilum').click(function(){
+									$('#ILUMINACAO').click(function(){
 											if (i % 2 != 0){
 												$("#numLamp").show();
 												$("#qtdIlum").show();
+												$("#potenciaLamp").show();
+												$("#potenciaLuz").show();
+												
 											}
 											else{
 												$("#numLamp").hide();
 												$("#qtdIlum").hide();
+												$("#potenciaLamp").hide();
+												$("#potenciaLuz").hide();
+												
 											}
 											i++;
 											
+									});
+									
+									var k, w = 1;
+									
+									$('#AR').click(function(){
+											if (i % 2 != 0){
+												$("#numAr").show();
+												$("#qtdAr").show();
+												$("#potenciaAr").show();
+												$("#potenciaCond").show();
+											}
+											else{
+												$("#numAr").hide();
+												$("#qtdAr").hide();
+												$("#potenciaAr").hide();
+												$("#potenciaCond").hide();
+											}
+											i++;
+											
+									});
+									
+									$("#reset").click(function(){
+										$("#numAr").hide();
+										$("#qtdAr").hide();
+										$("#numLamp").hide();
+										$("#qtdIlum").hide();
+										$("#potenciaAr").hide();
+										$("#potenciaCond").hide();
+										$("#potenciaLamp").hide();
+										$("#potenciaLuz").hide();
+										
+										
 									});
 									
 									
@@ -287,11 +369,11 @@
 								});
 							</script>
 							</div>
-							<div id="atualizarUsuario">
+							<div id="atualizarUsuario" style="margin-left:15%; margin-top: -50px;">
 								<br><br>	
 								<form method="post" action="../../AtualizaSala" name="form2" id="form2">
 									<fieldset>
-									<legend>Alterar Usuário</legend>
+									<legend><h2>Alterar Salas</h2></legend>
 									<label>Endereço IP: </label><br><input type="text" name="ip" id="ip" class="ip"><br>
 									<label>Endereço MAC: </label><br><input type="text" name="mac" id="mac" class="mac"><br>
 									<br><br><br>

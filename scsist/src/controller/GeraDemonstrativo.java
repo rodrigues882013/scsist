@@ -48,7 +48,7 @@ public class GeraDemonstrativo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		ServletContext context = getServletContext(); 
-		String tipo = (String)request.getParameter("tipo");
+		String tipo = (String)request.getParameter("demo");
 		
 		switch(tipo){
 			case "1":

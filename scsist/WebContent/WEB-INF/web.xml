@@ -99,6 +99,13 @@
 		<servlet-name>TesteServlet</servlet-name>
 		<servlet-class>controller.TesteServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CadastraSala</display-name>
+		<servlet-name>CadastraSala</servlet-name>
+		<servlet-class>controller.CadastraSala</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>teste</servlet-name>
 		<url-pattern>/teste</url-pattern>
@@ -154,6 +161,10 @@
 	<servlet-mapping>
 		<servlet-name>TesteServlet</servlet-name>
 		<url-pattern>/TesteServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CadastraSala</servlet-name>
+		<url-pattern>/CadastraSala</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

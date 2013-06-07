@@ -39,6 +39,7 @@
 			fieldset{
 				border-radius: 10px;
 				padding: 20px;
+				background: #EFEFEF;
 			}
 			input{
 				border:1;
@@ -87,16 +88,20 @@
 			}
 			input[type=text]{
     			color: #000;
-    			max-length: 27px;
+    			length: 15pt;
     			width: 500px;
-    			
+    			border: 1px solid;
+				border-radius: 5px;
+    			text-align: left;
     			
 			}
 			input[type=password]{
-    			text-decoration: none;
-    			color: #FFF;
-    			max-length: 27px;
+    			color: #000;
+    			length: 15pt;
     			width: 200px;
+    			border: 1px solid;
+				border-radius: 5px;
+    			text-align: left;
     			
 			}
 			input[type=submit]{
@@ -141,14 +146,13 @@
   				<ul id="MenuBar1" class="MenuBarHorizontal">
   					<li><a href="salas.jsp">Controlar Salas</a></li>
    	  				<li><a href="demonstrativos.jsp">Demonstrativo</a></li>
-      				<li><a href="">Gerenciar Salas</a></li>
-      				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
+      				<li><a href="gerenciaSalas.jsp">Gerenciar Salas</a></li>
+      				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Gerenciar Usuários</a></li>
       				<li><a href="">Suporte</a></li>
     			</ul>
   			</div>
   		</div>
  		<br>
- 		<div style="margin-left:180px;"><h1>Gerenciamento de usuários</h1></div>
 		<div id="conteudo">
 			<div class="content" style="margin-left:35%;">	
 						<%
@@ -199,14 +203,13 @@
 							}
 						</script>
 							<%}%>
-						<div id="novoUsuario">
-							<%if (us == null){ %>						
+							<div id="novoUsuario" style="margin-left:15%; margin-top: -50px;">							<%if (us == null){ %>						
 							Não existem usuário cadastrados no momento, deseja cadastrar um novo usuário?
 							<%} %>
 								<br><br>	
 								<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
 									<fieldset>
-									<legend>Inserir Usuário</legend>
+									<legend><h2>Inserir Usuário</h2></legend>
 									<label>Nome: </label><br><input type="text" name="nome" id="nome"><br>
 									<label>Login: </label><br><input type="text" name="login" id="login"><br>
 									<label>Senha: </label><br><input type="password" name="senha" id="senha"><br>
@@ -219,7 +222,7 @@
 									<br><br><br>
 									<input type="submit" value="Cadastrar">
 									<input type="reset" value="Limpar">
-									<input type="button" value="back" id="back">
+									<input type="button" value="Voltar" id="back">
 									</fieldset>
 								</form>
 								<script type="text/javascript">
@@ -257,11 +260,11 @@
 								});
 							</script>
 							</div>
-							<div id="atualizarUsuario">
+							<div id="atualizarUsuario" style="margin-left:15%; margin-top: -50px;">
 								<br><br>	
 								<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
 									<fieldset>
-									<legend>Alterar Usuário</legend>
+									<legend><h2>Alterar Usuário</h2></legend>
 									<label>Nome: </label><br><input type="text" name="nome" id="nome" class="nome"><br>
 									<label>Login: </label><br><input type="text" name="login" id="login" class="llogin"><br>
 									<label>Nivel: </label><br>

@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.DispositivoDAO;
 import model.dao.SalaDAO;
 import model.dao.UsuarioDAO;
 import model.objects.Sala;
@@ -66,6 +68,8 @@ public class ControleAcesso extends HttpServlet {
 						ArrayList<Sala> salas = new ArrayList<Sala>();
 						usuarios = UsuarioDAO.selectAll();
 						salas = SalaDAO.selectAll();
+						HashMap<Integer, String> dispositivos = DispositivoDAO.listaTipos();
+						session.setAttribute("dispositivos", dispositivos);
 						session.setAttribute("usuarios", usuarios);
 						session.setAttribute("salas", salas);
 						session.setAttribute("usuario", usuario);
