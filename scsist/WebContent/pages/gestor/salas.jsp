@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="model.objects.Usuario"%>
+<%@page import="model.objects.Sala"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 
 
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
+	ArrayList<Sala> us = (ArrayList<Sala>) session.getAttribute("salas");
 	if (u != null){
 		String nome = u.getNome();
 %>
@@ -130,7 +132,7 @@
    	  				<li><a href="demonstrativos.jsp" >Demonstrativo</a></li>
       				<li><a href="gerenciarSalas.jsp">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
-      				<li><a href="">Suporte</a></li>
+      				<li><a href="suporte.jsp">Suporte</a></li>
     			</ul>
   			</div>
   		</div>
@@ -141,7 +143,17 @@
 			<div class="content" style="margin-left:150px;">	
 				<div id="js_version" class="accordion">
             <ol>
-                <li data-slide-name="slide1">
+            <%
+            	for (int i=0; i<us.size(); i++){ 
+            		String s = "slide" + i+1;
+            %>
+            <li data-slide-name='<%=s%>'>
+                    <h2><span>Hibrida 1</span></h2>
+                    <div>
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="766" /></a>
+                    </div>
+            </li> <%} %>
+              <!--   <li data-slide-name="slide1">
                     <h2><span>Hibrida 1</span></h2>
                     <div>
                         <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
@@ -176,7 +188,7 @@
                     <div>
                         <img src="../../images/h3_02.jpg" alt="Multipla" width="750" />
                     </div>
-                </li>
+                </li>-->
             </ol>
         </div>
         
@@ -208,7 +220,7 @@
 						data : "grupo=1&id=1&usuario=" + "<%=login%>",
 						dataType : 'json',
 						success : function(response){
-							if (response == "1"){
+							if (response == "LIGADO"){
 								alert("Sou 1")
 								$('#myModal #couch .button').html("");
 								$('#myModal #couch .button').html(liga);
@@ -221,7 +233,7 @@
 						},
 						error : function(){
 								alert("erro");
-							}
+						}
 							
 					});
 				});

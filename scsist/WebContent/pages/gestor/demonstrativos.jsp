@@ -15,13 +15,13 @@
 
 		<title>Gestor</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script language="javascript" src="../../scripts/ajax2.js"></script>
+		<script type="text/javascript" src="../../scripts/ajax2.js"></script>
 		<link type="text/css" rel="stylesheet" media="all" href="../../styles/style.css"/>
 		<link type="text/css" rel="stylesheet" media="all" href="../../styles/jquery-ui.css"/>
-		<script language="JavaScript" src="../../scripts/jquery.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../scripts/jquery.js" type="text/javascript"></script>
 		<script type="text/javascript" src="../../scripts/jquery-ui.js"></script>
 		<script type="text/javascript" src="../../scripts/jquery-1.9.1.js"></script>
-		<script language="JavaScript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"../../scripts/SpryMenuBarDownHover.gif", imgRight:"../../scripts/SpryMenuBarRightHover.gif"});
 			setInterval ("window.status = ''",10);
@@ -104,7 +104,7 @@
    	  				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Demonstrativo</a></li>
       				<li><a href="">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
-      				<li><a href="">Suporte</a></li>
+      				<li><a href="suporte.jsp">Suporte</a></li>
     			</ul>
   			</div>
   		</div>

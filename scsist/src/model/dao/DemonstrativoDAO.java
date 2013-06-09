@@ -26,15 +26,46 @@ public class DemonstrativoDAO {
 			return null;
 		}
 	}
-	public synchronized static boolean insert(Demonstrativo d){
+	public synchronized static boolean insert(Demonstrativo d) throws Exception{
+		Conexao con = Conexao.getInstancia();
+		Connection c = null;
 		try{
+			con.iniciaBD();	
+			c = con.getConexao();
+			c.setAutoCommit(false); 
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO demonstrativo VALUE (?, ?, ?)");
+			ps.setString(1, d.getTempoInicio());
+			int idDispos = DispositivoDAO.getId(d.getDipositivo().getNumero(), d.getSala().getNumero());
+			ps.setInt(2, idDispos);
+			int sala = SalaDAO.getID(d.getSala().getNumero());
+			ps.setInt(3, sala);
+			
 			return true;
 		}
 		catch (Exception e){
+			c.rollback();
 			throw e;
 		}
 	}
-	public synchronized static boolean update(Demonstrativo d){return true;}
+	public synchronized static boolean update(Demonstrativo d) throws Exception{
+		Conexao con = Conexao.getInstancia();
+		Connection c = null;
+		try{
+			con.iniciaBD();	
+			c = con.getConexao();
+			c.setAutoCommit(false); 
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("UPDATE demonstrativo SET tempoFim=? WHERE id_sala=?");
+			ps.setString(1, d.getTempoFim());
+			int sala = SalaDAO.getID(d.getSala().getNumero());
+			ps.setInt(2, sala);
+			
+			return true;
+		}
+		catch (Exception e){
+			c.rollback();
+			throw e;
+		}
+	}
 	public synchronized static ResultSet gerarControleDeUsuariosPorSala(){
 		Conexao con = null;
 

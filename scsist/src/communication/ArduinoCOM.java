@@ -2,6 +2,7 @@ package communication;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -54,7 +55,8 @@ public class ArduinoCOM {
 			if (estado.compareTo("1") == 0)state = "1";
 			if (estado.compareTo("0") == 0)state = "0";
 			if (estado.compareTo("-1") == 0)state = "-1";
-			String codigo = grupo + state;
+			String codigo = "6" + state;
+			System.out.println(codigo);
 			this.out.writeBytes(codigo); 
 			int situation = Integer.parseInt(this.in.readLine());
 			System.out.println(situation);
@@ -66,11 +68,17 @@ public class ArduinoCOM {
 			//Ligado
 			return 1;
 			
+			
 		}
 		catch (Exception e) {
 			//Falha
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	
+	public boolean close() throws IOException{
+		this.client.close();
+		return true;
 	}
 }

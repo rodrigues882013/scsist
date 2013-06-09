@@ -242,7 +242,7 @@
 								<form method="post" action="../../CadastraSala" name="form1" id="form1">
 									<fieldset>
 									<legend><h2>Cadastrar nova sala</h2></legend>
-									<label>Número da Sala: </label><br><input type="text" name="num" id="num" class="num"><br>
+									<label>Número da Sala: </label><br><input type="text" name="numero" id="numero" class="numero"><br>
 									<label>Endereço IP: </label><br><input type="text" name="ip" id="ip" class="ip"><br>
 									<label>Endereço MAC: </label><br><input type="text" name="mac" id="mac" class="mac"><br><br>
 									<label>Dispositivos:</label><br>
@@ -259,7 +259,7 @@
 									<label id="numLamp">Número de lâmpadas:</label>&nbsp;&nbsp;
 									<input type="text" name="qtdIlum" id="qtdIlum" class="qtdIlum">&nbsp;&nbsp;
 									<label id="potenciaLuz">Potência (W):</label>&nbsp;&nbsp;
-									<select id="potenciaLamp">
+									<select id="potenciaLamp" name="potenciaLamp">
 										<option>40</option>
 										<option>60</option>
 										<option>120</option>
@@ -268,7 +268,7 @@
 									<label id="numAr">Número de condicionadores de AR:</label>&nbsp;&nbsp;
 									<input type="text" name="qtdAr" id="qtdAr" class="qtdAr">&nbsp;&nbsp;
 									<label id="potenciaAr">Potência (BTU):</label>&nbsp;&nbsp;
-									<select id="potenciaCond">
+									<select id="potenciaCond" name="potenciaCond">
 										<option>5000</option>
 										<option>10000</option>
 										<option>15000</option>

@@ -1,21 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@page import="model.objects.Usuario"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
+
+
+<%
+	Usuario u = (Usuario) session.getAttribute("usuario");
+	if (u != null){
+		String nome = u.getNome();
+%>
 
 
 <!DOCTYPE html>
 <html>
 	<head>
 
-		<title>Supervisor</title>
+		<title>Gestor</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script type="text/javascript" src="../../scripts/ajax2.js"></script>
-		<link type="text/css" rel="stylesheet" media="all" href="../../styles/style.css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../scripts/jquery-ui.js"></script>
+		<script type="text/javascript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
 		<script type="text/javascript" src="../../scripts/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="../../scripts/jquery.reveal.js"></script>
+		<link type="text/css" rel="stylesheet" media="all" href="../../styles/style.css"/>
+		<link type="text/css" rel="stylesheet" media="all" href="../../styles/jquery-ui.css"/>
+        <link href="../../styles/liteaccordion.css" rel="stylesheet" />
+        <script src="../../scripts/jquery.min.js"></script>
+        <script src="../../scripts/jquery.easing.1.3.js"></script>
+        <script src="../../scripts/liteaccordion.jquery.js"></script>
+        
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('.content .rooms a').click(function() {
-        			this.blur();
-        			alert("Aqui"); //Aqui deverá entrar uma chamada AJAX pro servlet que atualizará  os estados.
+				$("#estado").hide();
+			});
+		</script>
+
+        <script>
+            $(document).ready(function(){
+                $('#js_version').liteAccordion({
+                    theme : 'dark',
+                    rounded : true,
+                    enumerateSlides : true,
+                    firstSlide : 1,
+                    linkable : true,
+                    easing: 'easeInOutSine'
+                });
+            });
+        </script>
+        
+          <script type="text/javascript">
+			$(document).ready(function(){
+		
+		$('a').click(function() {
+        		this.blur();
         	});
 		
 			//Hide all item descriptions in the info box
@@ -63,128 +101,142 @@
 		
 		}); 
 		</script>
-		
 	</head>
 
 	<body>
 	<div id="geral">
 
-		<div id="corpo">
-	
-	
+		<div id="corpo">	
 			<div id="menuc">
-	
-					<strong>Sistema de Controle das Salas do IST-Rio/FAETERJ</strong>
+					<div id="left-side">
+						<img src="../../images/logo4.png">
+					</div>
+					<div id="right-side">
+						<img src="../../images/avatar.gif" alt="user icon" />&ensp;
+							<a href="#" class="first"><%=u.getNome()%></a>&ensp;
+							<a href="#">Alterar dados</a>&ensp;
+							<a href="../../EncerraAcesso">Sair</a> &emsp;
+					</div>
+			</div>
+		</div>
+		
+		<div id="conteudo">
+			
+			<br><br>
+			<div class="content" style="margin-left:150px;">	
+				<h2>Click na foto para ter acesso a sala</h2>
+				<div id="js_version" class="accordion">
+            <ol>
+                <li data-slide-name="slide1" id='sala1'>
+                    <h2><span>Hibrida 1</span></h2>
+                    <input type="hidden" value=1 id="sala1">
+                    <div>
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750"/></a>
+                    </div>
+                </li>
+                <li data-slide-name="slide2">
+                    <h2><span>Hibrida 2</span></h2>
+                    <div>
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
+                    </div>
+                </li>
+                <li data-slide-name="slide3">
+                    <h2><span>Hibrida 3</span></h2>
+                    <div>
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
+                    </div>
+                </li>
+                <li data-slide-name="slide4">
+                    <h2><span>Hibrida 4</span></h2>
+                    <div>
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
+                    </div>
+                </li>
+                <li data-slide-name="slide4">
+                    <h2><span>Hibrida 5</span></h2>
+                    <div>
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
+                    </div>
+                </li>
+                <li data-slide-name="slide5">
+                    <h2><span>Sala Múltipla</span></h2>
+                    <div>
+                        <a href="#" data-reveal-id="myModal" data-animation="fade"><img src="../../images/h3_02.jpg" alt="Multipla" width="750" /></a>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        
+        <!-- Imagem que amplia a foto, na verdade esta foto está escondida -->
+        <div id="myModal" class="reveal-modal">
+        	<div class="more" id="couch">
+        			<input type="hidden" value=1 id="frente">
+					<a href="#" class='button'><img src="../../images/off.png"/></a>
+					<span>Ascendendo a luz 1</span>
 			
 			</div>
-		
+			<div class="more" id="plant">
+					<a href="#"><img src="../../images/off.png"/></a>
+					<span>Ascendendo a luz 2</span>
+			</div>
+				
+			
+			<div class="more" id="traz">
+					<a href="#"><img src="../../images/off.png"/></a>
+					<span>Ascendendo a luz 2</span>
+			</div>
+				
+			<img src="../../images/h3_02.jpg" width="800px" height="400px">
+				
+			<a class="close-reveal-modal">&#215;</a>
 		</div>
- 
-		<div id="conteudo">
-			<div class="boxUser">
-					Ola user Seja bem vindo
-					<br>
-					<a href="../index.html">SAIR</a>
-				</div>
-			<div class="content">
-				<div class="rooms">
-					<div class="room1" >
-						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-					</div>
-			
-					<div class="room2">
-						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-					</div>
-			
-					<div class="room3">
-						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-					</div>
-					<br><br><br><br><br><br><br>
-					<div class="room4">
-						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-					</div>
-			
-					<div class="room5">
-						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-					</div>
-			
-					<div class="room6">
-						<a href='#' data-reveal-id="myModal" data-animation="fade"><img src="../../images/door.png" width="100px" height="150px"></a>
-					</div>
-				</div>			
-				<div id="myModal" class="reveal-modal">
-					<div class="more" id="couch">
-						<div class="frente"><a href="#"><img src="../../images/off.png"/></a></div>
-						<span>Ascendendo a luz 1</span>
-			
-					</div>
-					
-					<script type="text/javascript">
-					
-						$("#myModal .more .frente a").click(function(){
-							$.ajax({
-								url : "../../TesteServlet",
-								data : "id=1&grupo=1",
-								type : "POST",
-								dataType : "json",
-								success: function(json){
-										alert(json);
-										if (json == "1"){
-											$("#myModal .more .frente a").html("");
-											$("#myModal .more .frente a").html("<img src='../../images/on.png'/>");
-										}
-										else{
-											$("#myModal .more .frente a").html("");
-											$("#myModal .more .frente a").html("<img src='../../images/off.png'/>");
-										}
-								}, 
-								error : function(){
-									alert("Erro");
-								}
-								
-							});
-						});
-					</script>
 		
-					<div class="more" id="plant">
-						<div class="meio"><a href="#"><img src="../../images/more.png"/></a></div>
-						<span>Ascendendo a luz 2</span>
-					</div>
-					<script type="text/javascript">
-					
-						$("#myModal .more .meio a").click(function(){
-							$.ajax({
-								url : "../../TesteServlet",
-								data : "id=1&grupo=1",
-								type : "POST",
-								dataType : "json",
-								success: function(json){
-										alert(json);
-										if (json == "1"){
-											$("#myModal .more .meio a").html("");
-											$("#myModal .more .meio a").html("<img src='../../images/on.png'/>");
-										}
-										else{
-											$("#myModal .more .meio a").html("");
-											$("#myModal .more .meio a").html("<img src='../../images/off.png'/>");
-										}
-								}, 
-								error : function(){
-									alert("Erro");
-								}
-								
-							});
-						});
-					</script>
+		<script type="text/javascript">
+				$("#myModal #couch a").click(function(){
+					var liga = "<img src='../../images/on.png'/>";
+					var desliga = "<img src='../../images/off.png'/>";
+					var sala = $("frente").val();
+					alert("acertei");	
+					$.ajax({
+						url : '../../TesteServlet',
+						type : 'POST',
+						data : "grupo=" + sala + "&id=1",
+						dataType : 'json',
+						success : function(response){
+							if (response == "1"){
+								alert("Sou 1")
+								$('#myModal #couch .button').html("");
+								$('#myModal #couch .button').html(liga);
+							}
+							else{
+								alert("Sou 0")
+								$('#myModal #couch .button').html("");
+								$('#myModal #couch .button').html(desliga);
+							}
+						},
+						error : function(){
+								alert("erro");
+							}
 							
+					});
+				});
+			
+			</script>
+		
+		
 				
-					<img src="../../images/h3_02.jpg" width="800px" height="400px">
-				
-					<a class="close-reveal-modal">&#215;</a>
-				</div>
-			</div>  
-
-		</div>         
+							
+			</div>
+		</div>
 	</div>
-	</body>
+			
 </html>
+
+<%
+}
+else{
+		response.sendRedirect("../../");
+}
+
+
+%>

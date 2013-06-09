@@ -19,13 +19,13 @@ public class DispositivoDAO {
 			con = Conexao.getInstancia();
 			con.iniciaBD();
 			Connection c = con.getConexao();
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM demonstrativo WHERE id_sala=? GROUP BY id_dispositivo");
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM dispositivo WHERE id_sala=?");
 			ps.setInt(1, num);
 			ResultSet res = (ResultSet) ps.executeQuery();
 			d = new ArrayList<Dispositivo>();
 			//res.next();
 			while(res.next()){
-				d.add(DispositivoDAO.selectById((res.getInt("id_dispositivo"))));
+				d.add(DispositivoDAO.selectById((res.getInt("id"))));
 			}
 			ps.close();
 			c.close();
@@ -117,8 +117,8 @@ public class DispositivoDAO {
 			res.next();
 			int aux = (int)res.getInt("estado");
 			if (aux == 1)d.setEstado(Estado.LIGADO);
-			if (aux == 0)d.setEstado(Estado.DESLIGADO);
-			if (aux == -1)d.setEstado(Estado.INATIVO);
+			if (aux == 2)d.setEstado(Estado.DESLIGADO);
+			if (aux == 3)d.setEstado(Estado.INATIVO);
 			d.setNumero(res.getInt("indentificador"));
 			d.setPotencia(res.getFloat("potencia"));
 			ps.close();
@@ -154,6 +154,32 @@ public class DispositivoDAO {
 			c.close();
 
 			return m;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw e;
+			//return false;
+		}
+		finally{
+			con.fechaBd();
+		}
+	}
+	
+	public synchronized static int getId(int id, int numSala) throws Exception{
+		Conexao con = null;
+		try{
+			con = Conexao.getInstancia();
+			con.iniciaBD();
+			Connection c = con.getConexao();
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM dispositivo WHERE id=? AND id_sala=?");
+			ps.setInt(1, id);
+			ps.setInt(2, numSala);
+			ResultSet res = (ResultSet) ps.executeQuery();
+			res.next();
+			int aux = (int)res.getInt("id");
+			ps.close();
+			c.close();
+			return aux;			
 		}
 		catch(Exception e){
 			e.printStackTrace();

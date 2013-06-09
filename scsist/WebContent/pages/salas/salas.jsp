@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="model.objects.Usuario"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 
 

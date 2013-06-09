@@ -148,7 +148,7 @@
    	  				<li><a href="demonstrativos.jsp">Demonstrativo</a></li>
       				<li><a href="gerenciaSalas.jsp">Gerenciar Salas</a></li>
       				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Gerenciar Usuários</a></li>
-      				<li><a href="">Suporte</a></li>
+      				<li><a href="suporte.jsp">Suporte</a></li>
     			</ul>
   			</div>
   		</div>
@@ -160,7 +160,7 @@
 						%>
 						<br><br><br>
 						<div id="dataTable" align="center" style="margin-left: -20px;">
-							<table align="center">
+							<table style="text-align:center;">
 								<tr>
 									<th>Nome</th>
 									<th>Login</th>
@@ -203,7 +203,8 @@
 							}
 						</script>
 							<%}%>
-							<div id="novoUsuario" style="margin-left:15%; margin-top: -50px;">							<%if (us == null){ %>						
+							<div id="novoUsuario" style="margin-left:15%; margin-top: -50px;">							
+							<%if (us == null){ %>						
 							Não existem usuário cadastrados no momento, deseja cadastrar um novo usuário?
 							<%} %>
 								<br><br>	

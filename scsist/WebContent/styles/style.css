@@ -305,7 +305,7 @@ a:hover {
 
 #menu {
 	height: 45px;
-	width: 1251px;
+	width: 1248px;
 	position: relative; 
 }
 
@@ -377,6 +377,7 @@ a:hover {
 			/* Item Specific More Button */
 			#couch{ top:140px; left:200px;}
 			#plant{ top:180px; left:370px; }
+			#traz{ top:200px; left:400px; }
 		
 			
 			
