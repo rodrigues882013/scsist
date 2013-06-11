@@ -46,13 +46,11 @@ public class AlterarEstados extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		String estado = "";
 		try{
 			
-			String numSala = (String) request.getParameter("id"); //Numero da Sala
-			//String estado= (String) request.getParameter("estado"); //
+			String numSala = (String) request.getParameter("sala"); //Numero da Sala
+			String estado = (String) request.getParameter("estado"); //
 			String idUsuario = (String) request.getParameter("login"); //Login
 			String grupo = (String) request.getParameter("grupo"); //Frente, atras e meio
 			
@@ -65,6 +63,7 @@ public class AlterarEstados extends HttpServlet {
 			boolean condicao = true;
 			
 			if (grupo.compareTo("3") == 0){ //Parte da frente da iluminação
+				ArduinoCOM client = ArduinoCOM.getClient(sala.getIp());
 				for (int i=0; i<3; i++){
 					if (i < sala.getDispositivos().size()){ //Checa se ha pelo menos um dispositivo
 						sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
@@ -85,14 +84,15 @@ public class AlterarEstados extends HttpServlet {
 						DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString());
 					}
 				}
-				ArduinoCOM client = ArduinoCOM.getClient(sala.getIp());
+				
 				//Vai passar o estao do grupo
-				Integer state = client.changeState("1", grupo); //Passa o estado para o o communication.Client alterar o estado
+				Integer state = client.changeState(estado, grupo); //Passa o estado para o o communication.Client alterar o estado
 				//System.out.println(state);
 				if (state == 1)estado = "LIGADO";
 				if (state == 0)estado = "DESLIGADO";
 				if (state == -1)estado = "FALHA";
-							
+				
+				client.close();
 						//Envia a resposta via json para a pagina que requisitou
 				String json = new Gson().toJson(estado);
 				response.setContentType("application/json"); 
@@ -103,6 +103,7 @@ public class AlterarEstados extends HttpServlet {
 			}
 			else{
 				if (grupo.compareTo("6") == 0){ //Parte do Meio
+					ArduinoCOM client = ArduinoCOM.getClient(sala.getIp());
 					for (int i=3; i<6; i++){
 						if (i < sala.getDispositivos().size()){ //Checa se ha pelo menos um dispositivo
 							sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
@@ -123,14 +124,16 @@ public class AlterarEstados extends HttpServlet {
 							DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString());
 						}	
 					}
-					Client client = Client.getClient();
-					Integer state = client.changeState("1", "6"); //Passa o estado para o o communication.Client alterar o estado
-								//System.out.println(state);
+					//Vai passar o estao do grupo
+					Integer state = client.changeState(estado, grupo); //Passa o estado para o o communication.Client alterar o estado
+					//System.out.println(state);
 					if (state == 1)estado = "LIGADO";
 					if (state == 0)estado = "DESLIGADO";
 					if (state == -1)estado = "FALHA";
 								
-								//Envia a resposta via json para a pagina que requisitou
+					client.close();
+
+							//Envia a resposta via json para a pagina que requisitou
 					String json = new Gson().toJson(estado);
 					response.setContentType("application/json"); 
 					response.setCharacterEncoding("utf-8"); 
@@ -142,8 +145,9 @@ public class AlterarEstados extends HttpServlet {
 					
 				}
 				else{ //Parte de traz
+					ArduinoCOM client = ArduinoCOM.getClient(sala.getIp());
 					for (int i=6; i<9; i++){
-						if (sala.getDispositivos().get(i) != null){ //Checa se ha pelo menos um dispositivo
+						if (i < sala.getDispositivos().size()){ //Checa se ha pelo menos um dispositivo
 							sala.getDispositivos().get(i).setEstado(); //Altera o estado na aplicação
 							Demonstrativo d = new Demonstrativo();
 							d.setSala(sala);
@@ -162,13 +166,16 @@ public class AlterarEstados extends HttpServlet {
 							DispositivoDAO.update(sala.getDispositivos().get(i).getNumero().toString(), sala.getDispositivos().get(i).getEstado().toString());
 						}
 					}
-					Client client = Client.getClient();
-					Integer state = client.changeState("0", "2"); //Passa o estado para o o communication.Client alterar o estado
-								//System.out.println(state);
+					//Vai passar o estao do grupo
+					Integer state = client.changeState(estado, grupo); //Passa o estado para o o communication.Client alterar o estado
+					//System.out.println(state);
 					if (state == 1)estado = "LIGADO";
 					if (state == 0)estado = "DESLIGADO";
 					if (state == -1)estado = "FALHA";
-								//Envia a resposta via json para a pagina que requisitou
+								
+					client.close();
+
+							//Envia a resposta via json para a pagina que requisitou
 					String json = new Gson().toJson(estado);
 					response.setContentType("application/json"); 
 					response.setCharacterEncoding("utf-8"); 

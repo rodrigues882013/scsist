@@ -53,12 +53,19 @@ public class GeraDemonstrativo extends HttpServlet {
 		switch(tipo){
 			case "1":
 				try{  
+					Conexao con = Conexao.getInstancia();
+					con.iniciaBD();
+					
+					String sala = request.getParameter("sala");
+					Map<String, Object> param = new HashMap<String, Object>(); 
+				    param.put("SQL", "SELECT*FROM relatorio_um WHERE Sala = " + Integer.parseInt(sala)); 
 					String arquivo = context.getRealPath("/WEB-INF/reports/report4.jasper");
-					JRDataSource jrRS = new JRResultSetDataSource(DemonstrativoDAO.gerarDemonstrativo());
 					ServletOutputStream servletOutputStream = response.getOutputStream();
 					servletOutputStream = response.getOutputStream();
-		            JasperRunManager.runReportToPdfStream(new FileInputStream(new File(arquivo)), response.getOutputStream(), null, jrRS);
+					byte[] bytes = new byte[0]; 
+					bytes = JasperRunManager.runReportToPdf(arquivo, param, con.getConexao());
 		            response.setContentType("application/pdf");
+		            servletOutputStream.write(bytes);
 		            servletOutputStream.flush();
 		            servletOutputStream.close();
 				}
@@ -85,12 +92,20 @@ public class GeraDemonstrativo extends HttpServlet {
 				
 			case "3":
 				try{  
+					Conexao con = Conexao.getInstancia();
+					con.iniciaBD();
+					
+					String sala = request.getParameter("sala");
+					String data = request.getParameter("data");
+					Map<String, Object> param = new HashMap<String, Object>(); 
+				    param.put("SQL", "SELECT*FROM relatorio_dois WHERE Sala = " + Integer.parseInt(sala) + "  AND Dia = '" + data + "'"); 
 					String arquivo = context.getRealPath("/WEB-INF/reports/Usuarios.jasper");
-					JRDataSource jrRS = new JRResultSetDataSource(UsuarioDAO.gerarDemonstrativoUsuarios());
 					ServletOutputStream servletOutputStream = response.getOutputStream();
 					servletOutputStream = response.getOutputStream();
-		            JasperRunManager.runReportToPdfStream(new FileInputStream(new File(arquivo)), response.getOutputStream(), null, jrRS);
+					byte[] bytes = new byte[0]; 
+					bytes = JasperRunManager.runReportToPdf(arquivo, param, con.getConexao());
 		            response.setContentType("application/pdf");
+		            servletOutputStream.write(bytes);
 		            servletOutputStream.flush();
 		            servletOutputStream.close();
 				}
@@ -106,7 +121,7 @@ public class GeraDemonstrativo extends HttpServlet {
 					
 					String sala = request.getParameter("sala");
 					Map<String, Object> param = new HashMap<String, Object>(); 
-				    param.put("SQL", "SELECT Mes, Consumo, Sala FROM relatorio_tres WHERE Sala = " + 1); 
+				    param.put("SQL", "SELECT Mes, Consumo, Sala FROM relatorio_tres WHERE Sala = " + Integer.parseInt(sala)); 
 					String arquivo = context.getRealPath("/WEB-INF/reports/report5.jasper");
 					ServletOutputStream servletOutputStream = response.getOutputStream();
 					servletOutputStream = response.getOutputStream();
@@ -122,6 +137,21 @@ public class GeraDemonstrativo extends HttpServlet {
 				}
 				break;
 				
+			case "5":
+				try{  
+					String arquivo = context.getRealPath("/WEB-INF/reports/UsuariosCadastrados.jasper");
+					JRDataSource jrRS = new JRResultSetDataSource(UsuarioDAO.gerarDemonstrativoUsuarios());
+					ServletOutputStream servletOutputStream = response.getOutputStream();
+					servletOutputStream = response.getOutputStream();
+		            JasperRunManager.runReportToPdfStream(new FileInputStream(new File(arquivo)), response.getOutputStream(), null, jrRS);
+		            response.setContentType("application/pdf");
+		            servletOutputStream.flush();
+		            servletOutputStream.close();
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				break;
 		}
 	}
 	

@@ -5,13 +5,9 @@
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  //endereco mac 
 IPAddress ip( 10, 1, 1, 18 ) ;    //enderecoo IP
 EthernetServer server(90);  //criando um objeto do tipo servidor, onde 90 e a porta de comunicacao
-int frente = 9; //Define a saida digital 9
-int meio = 10;
-int atras = 11;
-char msg[7]  = "0000L#";
-int i = 0;
-  
-
+int frente = 5; //Define a saida digital 9
+int meio = 6;
+int atras = 7;
 
 
 void setup()
@@ -23,8 +19,10 @@ void setup()
 	Serial.print("server is at\n");
 	pinMode(frente, OUTPUT);
 	pinMode(meio, OUTPUT);
-	pinMode(atras, OUTPUT);  
-
+	pinMode(atras, OUTPUT);
+        //digitalWrite(frente, HIGH);
+        //digitalWrite(meio, HIGH);
+        //digitalWrite(atras, HIGH);
 }
 
 void loop()

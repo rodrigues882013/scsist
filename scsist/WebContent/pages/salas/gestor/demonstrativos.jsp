@@ -5,7 +5,7 @@
 
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	if( (u != null) && (u.getNivel().toString().compareTo("GESTOR") == 0) ){
+	if (u != null){
 %>
 
 
@@ -102,7 +102,7 @@
   				<ul id="MenuBar1" class="MenuBarHorizontal">
    	  				<li><a href="salas.jsp">Controlar Salas</a></li>
    	  				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Demonstrativo</a></li>
-      				<li><a href="gerenciaSalas.jsp">Gerenciar Salas</a></li>
+      				<li><a href="">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
       				<li><a href="suporte.jsp">Suporte</a></li>
     			</ul>

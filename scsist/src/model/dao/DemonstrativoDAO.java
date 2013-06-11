@@ -33,12 +33,17 @@ public class DemonstrativoDAO {
 			con.iniciaBD();	
 			c = con.getConexao();
 			c.setAutoCommit(false); 
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO demonstrativo VALUE (?, ?, ?)");
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO demonstrativo (tempoInicio,  id_dispositivo, id_sala) VALUE (?, ?, ?)");
 			ps.setString(1, d.getTempoInicio());
 			int idDispos = DispositivoDAO.getId(d.getDipositivo().getNumero(), d.getSala().getNumero());
 			ps.setInt(2, idDispos);
 			int sala = SalaDAO.getID(d.getSala().getNumero());
 			ps.setInt(3, sala);
+			
+			ps.executeUpdate();
+			c.commit();
+			ps.close();
+			c.close();
 			
 			return true;
 		}
@@ -58,6 +63,11 @@ public class DemonstrativoDAO {
 			ps.setString(1, d.getTempoFim());
 			int sala = SalaDAO.getID(d.getSala().getNumero());
 			ps.setInt(2, sala);
+			
+			ps.executeUpdate();
+			c.commit();
+			ps.close();
+			c.close();
 			
 			return true;
 		}

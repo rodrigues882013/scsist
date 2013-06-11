@@ -73,7 +73,7 @@ public class ControleAcesso extends HttpServlet {
 						session.setAttribute("usuarios", usuarios);
 						session.setAttribute("salas", salas);
 						session.setAttribute("usuario", usuario);
-						response.sendRedirect("pages/gestor/index2.jsp");
+						response.sendRedirect("pages/gestor/");
 						break;
 
 					case "SUPERVISOR":
@@ -82,11 +82,8 @@ public class ControleAcesso extends HttpServlet {
 						break;
 
 					default:
-						String num = (String)request.getParameter("sala");
-						Sala sala = SalaDAO.selectByID(Integer.parseInt(num));
 						session.setAttribute("usuario", usuario);
-						session.setAttribute("sala", sala);
-						response.sendRedirect("pages/professor/");
+						response.sendRedirect("pages/professor/salas.jsp");
 						break;
 					}
 			}

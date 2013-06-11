@@ -10,7 +10,7 @@
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	ArrayList<Sala> us = (ArrayList<Sala>) session.getAttribute("salas");
 	HashMap<Integer, String> dispositivos = (HashMap<Integer, String>) session.getAttribute("dispositivos");
-	if( (u != null) && (u.getNivel().toString().compareTo("GESTOR") == 0) ){
+	if (u != null){
 %>
 
 
@@ -180,7 +180,7 @@
    	  				<li><a href="demonstrativos.jsp">Demonstrativo</a></li>
       				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
-      				<li><a href="suporte.jsp">Suporte</a></li>
+      				<li><a href="">Suporte</a></li>
     			</ul>
   			</div>
   		</div>

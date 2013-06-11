@@ -60,7 +60,10 @@
             * { font-family: Verdana; font-size: 96%; }
             label { display: block; margin-top: 0px; }
             label.error { float: none; color: red; margin: 0 .5em 0 0; vertical-align: top; font-size: 12px; padding-bottom: 4px; }
-            
+          	.content{
+				margin-left:300px;
+				margin-top: -24px;
+			}  
           
         </style>
 

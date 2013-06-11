@@ -77,17 +77,17 @@ public class DispositivoDAO {
 	}
 	public synchronized static ArrayList<Dispositivo> selectAll (){return null;}
 	public synchronized static boolean update (String identificador, String estado) throws Exception{
-		Conexao con = null;
-
+		Conexao con = Conexao.getInstancia();
+		Connection c = null;
+		
 		try{
-			con = Conexao.getInstancia();
-			con.iniciaBD();
-			Connection c = con.getConexao();
+			con.iniciaBD();	
+			c = con.getConexao();
+			c.setAutoCommit(false); 
 			PreparedStatement ps = (PreparedStatement) c.prepareStatement("UPDATE dispositivo SET estado=? WHERE indentificador=?"); 
-			ps.setInt(1, Integer.parseInt(identificador));
-			if (estado.compareTo("DESLIGADO") == 0) ps.setInt(2, 1);
-			if (estado.compareTo("LIGADO") == 0) ps.setInt(2, 0);
-			
+			if (estado.compareTo("DESLIGADO") == 0) ps.setInt(1, 1);
+			if (estado.compareTo("LIGADO") == 0) ps.setInt(1, 2);
+			ps.setInt(2, Integer.parseInt(identificador));
 			ps.executeUpdate();
 			ps.close();
 			c.close();
@@ -96,6 +96,7 @@ public class DispositivoDAO {
 		}
 		catch(Exception e){
 			e.printStackTrace();
+			c.rollback();
 			throw e;
 			//return false;
 		}
@@ -164,7 +165,6 @@ public class DispositivoDAO {
 			con.fechaBd();
 		}
 	}
-	
 	public synchronized static int getId(int id, int numSala) throws Exception{
 		Conexao con = null;
 		try{

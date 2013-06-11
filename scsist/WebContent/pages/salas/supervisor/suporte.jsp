@@ -5,7 +5,7 @@
 
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	if( (u != null) && (u.getNivel().toString().compareTo("GESTOR") == 0) ){
+	if (u != null){
 		String nome = u.getNome();
 %>
 
@@ -219,7 +219,7 @@
   				<ul id="MenuBar1" class="MenuBarHorizontal">
   					<li><a href="salas.jsp">Controlar Salas</a></li>
    	  				<li><a href="demonstrativos.jsp" >Demonstrativo</a></li>
-      				<li><a href="gerenciaSalas.jsp">Gerenciar Salas</a></li>
+      				<li><a href="gerenciarSalas.jsp">Gerenciar Salas</a></li>
       				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
       				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Suporte</a></li>
     			</ul>
@@ -230,7 +230,7 @@
 		<div id="conteudo">
 			<br><br>
 			<div class="content" style="margin-left:39%; margin-top: -64px; ">	
-				<form method="post" action="#" name="form2" id="form2">
+				<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
 					<fieldset>
 						<legend><h2>Formulário de Contato</h2></legend>
 						<label>Problema relatado: </label><br>

@@ -226,7 +226,7 @@ public class UsuarioDAO {
 			con = Conexao.getInstancia();
 			con.iniciaBD();
 			Connection c = con.getConexao();
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM usuarios"); //Usa uma view criada no banco
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT*FROM usuario"); 
 			ResultSet res = (ResultSet)ps.executeQuery();
 			return res;
 		}

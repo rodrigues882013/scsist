@@ -8,20 +8,22 @@ import java.net.Socket;
 
 public class ArduinoCOM {
 	private Socket client;
+	private static String ip;
 	private BufferedReader  in;
 	private DataOutputStream out;
 	private static ArduinoCOM instance;
 
 	//Estabelece comunicacao entre o cliente em java e o servidor (arduino)
-	private ArduinoCOM(String Ip) throws Exception{
-		this.client = new Socket(Ip, 90);
+	private ArduinoCOM(String ip) throws Exception{
+		this.ip = ip;
+		this.client = new Socket(ip, 90);
 		this.out = new DataOutputStream(client.getOutputStream());
 		this.in = new BufferedReader(new InputStreamReader(client.getInputStream()));//
 
 	}
 	
 	public static ArduinoCOM getClient(String Ip) throws Exception {
-		if (instance == null){
+		if (ip != Ip){
 			instance = new ArduinoCOM(Ip);
 		}
 		return instance;
@@ -52,10 +54,10 @@ public class ArduinoCOM {
 	public int changeState(String estado, String grupo) throws Exception{
 		try {
 			String state = "";
-			if (estado.compareTo("1") == 0)state = "1";
-			if (estado.compareTo("0") == 0)state = "0";
+			if (estado.compareTo("1") == 0)state = "0";
+			if (estado.compareTo("0") == 0)state = "1";
 			if (estado.compareTo("-1") == 0)state = "-1";
-			String codigo = "6" + state;
+			String codigo = grupo + state;
 			System.out.println(codigo);
 			this.out.writeBytes(codigo); 
 			int situation = Integer.parseInt(this.in.readLine());

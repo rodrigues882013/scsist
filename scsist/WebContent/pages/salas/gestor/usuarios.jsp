@@ -7,7 +7,7 @@
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	ArrayList<Usuario> us = (ArrayList<Usuario>) session.getAttribute("usuarios");
-	if( (u != null) && (u.getNivel().toString().compareTo("GESTOR") == 0) ){
+	if (u != null){
 %>
 
 

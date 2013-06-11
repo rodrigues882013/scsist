@@ -13,7 +13,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 
 public class SalaDAO {
-	public synchronized  static boolean insert(Sala S) throws Exception{
+	public synchronized static boolean insert(Sala S) throws Exception{
 		Conexao con = Conexao.getInstancia();
 		Connection c = null;
 		try{
@@ -61,8 +61,8 @@ public class SalaDAO {
 		}
 	
 	}
-	public synchronized  static boolean delete(Sala S){return true;}
-	public synchronized  static boolean update(Sala S) throws Exception{
+	public synchronized static boolean delete(Sala S){return true;}
+	public synchronized static boolean update(Sala S) throws Exception{
 		Conexao con = null;
 		Connection c = null;
 		Usuario u;
@@ -162,7 +162,6 @@ public class SalaDAO {
 			throw e;
 		}
 	}
-	
 	public synchronized static int getID(int sala) throws Exception{
 		Conexao con = null;
 		try{
@@ -175,6 +174,24 @@ public class SalaDAO {
 			res.next();
 			int id = (int)res.getInt("id");
 			return id;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public synchronized static boolean getUso(int sala) throws Exception{
+		Conexao con = null;
+		try{
+			con = Conexao.getInstancia();
+			con.iniciaBD();
+			Connection c = con.getConexao();
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("SELECT uso FROM sala WHERE numero=?");
+			ps.setInt(1, sala);
+			ResultSet res = (ResultSet)ps.executeQuery();
+			res.next();
+			boolean uso = (boolean)res.getBoolean("uso");
+			return uso;
 		}
 		catch(Exception e){
 			e.printStackTrace();
