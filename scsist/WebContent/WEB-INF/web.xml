@@ -120,6 +120,20 @@
 		<servlet-name>VerificaUso</servlet-name>
 		<servlet-class>controller.VerificaUso</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ContatoSuporte</display-name>
+		<servlet-name>ContatoSuporte</servlet-name>
+		<servlet-class>controller.ContatoSuporte</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ContatoCadastro</display-name>
+		<servlet-name>ContatoCadastro</servlet-name>
+		<servlet-class>controller.ContatoCadastro</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>teste</servlet-name>
 		<url-pattern>/teste</url-pattern>
@@ -187,6 +201,14 @@
 	<servlet-mapping>
 		<servlet-name>VerificaUso</servlet-name>
 		<url-pattern>/VerificaUso</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ContatoSuporte</servlet-name>
+		<url-pattern>/ContatoSuporte</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ContatoCadastro</servlet-name>
+		<url-pattern>/ContatoCadastro</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

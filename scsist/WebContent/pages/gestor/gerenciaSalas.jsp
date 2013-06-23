@@ -42,6 +42,7 @@
 				$("#potenciaLuz").hide();
 				$("#potenciaAr").hide();
 				$("#potenciaCond").hide();
+				$("#imagem").hide();
 
 			});
 
@@ -379,7 +380,7 @@
 									<br><br><br>
 									<input type="submit" value="Cadastrar">
 									<input type="reset" value="Limpar">
-									<input type="button" value="back" id="back">
+									<input type="button" value="Voltar" id="back">
 									</fieldset>
 								</form>
 							</div>
@@ -396,6 +397,30 @@
 									$("#atualizarUsuario").hide('show');	
 								});
 							</script>
+							
+							<script type="text/javascript">
+								$("#img").click(function(){
+									$('#dataTable').hide('slow');
+									$("#imagem").show();
+								});
+								
+								$("#backImg").click(function(){
+									$("#imagem").hide();
+									$("#dataTable").show('slow');	
+									
+								});
+							</script>
+							
+							<div id="imagem">
+							<form method="post" action="../../CadastraFoto" name="formImg" id="formImg">
+								<fieldset>
+									<legend><h2>Selecione a Foto</h2></legend>
+									<input type="file" name="imagem" id="imagem" class="imagem"><br>
+									<input type="submit" value="Enviar">
+									<input type="button" value="Voltar" id="backImg">
+								</fieldset>
+							</form>
+							</div>
 					</div>
 				</div>
 			</div>

@@ -194,6 +194,15 @@
 			textarea{
 				padding: 4px;
 			}
+			input[type=email]{
+    			color: #000;
+    			length: 15pt;
+    			width: 250px;
+    			border: 1px solid;
+				border-radius: 5px;
+    			text-align: left;
+    			
+			}
 		
 		</style>
 	</head>
@@ -208,23 +217,12 @@
 					</div>
 					<div id="right-side">
 						<img src="../../images/avatar.gif" alt="user icon" />&ensp;
-							<a href="#" class="first"><%=u.getNome()%></a>&ensp;
-							<a href="#">Alterar dados</a>&ensp;
+							<a href="#" class="first"><%=u.getNome()%></a>&ensp
 							<a href="../../EncerraAcesso">Sair</a> &emsp;
 					</div>
 			</div>
 		</div>
-		<div align="center">
-			<div class="menu" id="menu"> 
-  				<ul id="MenuBar1" class="MenuBarHorizontal">
-  					<li><a href="salas.jsp">Controlar Salas</a></li>
-   	  				<li><a href="demonstrativos.jsp" >Demonstrativo</a></li>
-      				<li><a href="gerenciarSalas.jsp">Gerenciar Salas</a></li>
-      				<li><a href="usuarios.jsp">Gerenciar Usuários</a></li>
-      				<li><a href="#" style="background-color: rgba(2,33,48,0.88); color:#FFF;">Suporte</a></li>
-    			</ul>
-  			</div>
-  		</div>
+		
  		<br>
  		
 		<div id="conteudo">
@@ -233,14 +231,34 @@
 				<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
 					<fieldset>
 						<legend><h2>Formulário de Contato</h2></legend>
+						<input type="hidden" name="nome" id="nome" value="<%=u.getNome() %>">
+						<label>Email</label><br>
+						<input type="email" name="email" id="email"><br><br>
 						<label>Problema relatado: </label><br>
-						<textarea rows="6" cols="70" placeholder="Relate seu problema aqui"></textarea>
+						<textarea rows="6" cols="70" placeholder="Relate seu problema aqui" id="msg" name="msg"></textarea>
 						<br><br><br>
 						<input type="hidden" value='<%u.getLogin();%>' name="login">
-						<input type="submit" value="Enviar">
+						<input type="button" value="Enviar" id="btnEnviar">
 						<input type="reset" value="Limpar">
+						<input type="button" value="Voltar" onClick="location.href='salas.jsp'">
+						
 					</fieldset>
 				</form>	
+				<script type="text/javascript">
+					$("#btnEnviar").click(function(){
+						$.ajax({
+							url : '../../ContatoSuporte',
+							type : 'POST',
+							data : "email=" + $("#msg").val() + "&email=" + $("#email").val() + "&nome=" + '<%=u.getNome()%>',
+							dataType : 'json',
+							success : function(response){
+								alert(response);
+								$("#email").val(" ");
+								$("#msg").val(" ");
+							}
+						});
+					})
+				</script>
         	</div>
         
        	</div>

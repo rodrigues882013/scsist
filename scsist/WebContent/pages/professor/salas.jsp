@@ -167,7 +167,7 @@
 					<div id="right-side">
 						<img src="../../images/avatar.gif" alt="user icon" />&ensp;
 							<a href="#" class="first"><%=u.getNome()%></a>&ensp;
-							<a href="#">Alterar dados</a>&ensp;
+							<a href="suporte.jsp">Suporte</a>&ensp;
 							<a href="../../EncerraAcesso">Sair</a> &emsp;
 					</div>
 			</div>

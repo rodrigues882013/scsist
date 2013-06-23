@@ -263,8 +263,8 @@
         </script>
         <!-- Imagem que amplia a foto, na verdade esta foto está escondida -->
         <div id="myModal" class="reveal-modal" style="background-color:#CFCFCF">
-			<h2>Sala X</h2>
-			<br>
+			<h2>Dispositivos</h2>
+			<br><br>
 			<fieldset style="border-radius: 30px; width: 200px;">
 				<legend><strong>Circuito da frente</strong></legend>
 				<input type="hidden" name="offF" id="offF" value='0'>
@@ -287,11 +287,13 @@
 									$("#desligadoF").hide();
 									$("#ligadoF").show();
 									$("#offF").val('1');
+									$("on1").val("ON");
 								}
 								else{
 									$("#ligadoF").hide();
 									$("#desligadoF").show();
 									$("#offF").val('0');
+									$("on1").val("OFF");
 								}
 							},
 							error : function(){
@@ -321,11 +323,13 @@
 									$("#desligadoM").hide();
 									$("#ligadoM").show();
 									$("#offM").val('1');
+									$("on2").val("ON");
 								}
 								else{
 									$("#ligadoM").hide();
 									$("#desligadoM").show();
 									$("#offM").val('0');
+									$("on1").val("OFF");
 								}
 							},
 							error : function(){
@@ -355,11 +359,13 @@
 									$("#desligadoT").hide();
 									$("#ligadoT").show();
 									$("#offT").val('1');
+									$("on3").val("ON");
 								}
 								else{
 									$("#ligadoT").hide();
 									$("#desligadoT").show();
 									$("#offT").val('0');
+									$("on3").val("OFF");
 								}
 							},
 							error : function(){

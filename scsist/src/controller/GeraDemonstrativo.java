@@ -76,12 +76,21 @@ public class GeraDemonstrativo extends HttpServlet {
 				
 			case "2":
 				try{  
-					String arquivo = context.getRealPath("/WEB-INF/reports/usuarios_salas.jasper");
-					JRDataSource jrRS = new JRResultSetDataSource(DemonstrativoDAO.gerarControleDeUsuariosPorSala());
+					String sala = (String) request.getParameter("numSala");
+					String dataIni = (String) request.getParameter("dataIni");
+					String dataFim = (String) request.getParameter("dataFim");
+					
+					Conexao con = Conexao.getInstancia();
+					con.iniciaBD();
+					Map<String, Object> param = new HashMap<String, Object>(); 
+				    param.put("SQL", "SELECT sala, sum(Tempo_funcionando) as Uso, sum(Consumo) as Consumo FROM relatorio_quatro WHERE (Sala = " + sala + ")  AND (Periodo_Inicial BETWEEN  '" + dataIni + "' AND '" + dataFim + "') group by sala"); 
+					String arquivo = context.getRealPath("/WEB-INF/reports/PorPeriodo.jasper");
 					ServletOutputStream servletOutputStream = response.getOutputStream();
 					servletOutputStream = response.getOutputStream();
-		            JasperRunManager.runReportToPdfStream(new FileInputStream(new File(arquivo)), response.getOutputStream(), null, jrRS);
+					byte[] bytes = new byte[0]; 
+					bytes = JasperRunManager.runReportToPdf(arquivo, param, con.getConexao());
 		            response.setContentType("application/pdf");
+		            servletOutputStream.write(bytes);
 		            servletOutputStream.flush();
 		            servletOutputStream.close();
 				}

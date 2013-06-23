@@ -103,7 +103,7 @@
 						</div>
 					</div>
 					<div class="signup">
-						Ainda não é cadastrado <a href="#">contacte</a> o gestor
+						Ainda não é cadastrado <a href="pages/contatocadastro.jsp">contacte</a> o gestor
 						<br><br><br>
 						<font color="red"><%=erro%></font>
 					</div>

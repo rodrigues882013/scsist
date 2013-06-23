@@ -213,7 +213,6 @@
 									<legend><h2>Inserir Usuário</h2></legend>
 									<label>Nome: </label><br><input type="text" name="nome" id="nome"><br>
 									<label>Login: </label><br><input type="text" name="login" id="login"><br>
-									<label>Senha: </label><br><input type="password" name="senha" id="senha"><br>
 									<label>Nivel: </label><br>
 									<select name="nivel" id="nivel">
 										<option value="1">GESTOR</option>
@@ -237,9 +236,7 @@
 												nome:{
 														required: true
 												},
-												senha:{
-														required: true
-												},
+												
 												login:{
 														required: true
 												}	
@@ -248,9 +245,7 @@
 												nome:{
 														required: "Nome é obrigatório"
 												},
-												senha:{
-														required: "Senha é obrigatoria"
-												},
+												
 												login:{
 													required: "Login é obrigatorio"
 												}

@@ -194,6 +194,15 @@
 			textarea{
 				padding: 4px;
 			}
+			input[type=email]{
+    			color: #000;
+    			length: 15pt;
+    			width: 250px;
+    			border: 1px solid;
+				border-radius: 5px;
+    			text-align: left;
+    			
+			}
 		
 		</style>
 	</head>
@@ -230,11 +239,14 @@
 		<div id="conteudo">
 			<br><br>
 			<div class="content" style="margin-left:39%; margin-top: -64px; ">	
-				<form method="post" action="#" name="form2" id="form2">
+				<form method="post" action="../../ContatoSuporte" name="form2" id="form2">
 					<fieldset>
 						<legend><h2>Formulário de Contato</h2></legend>
+						<input type="hidden" name="nome" id="nome" value="<%=u.getNome() %>">
+						<label>Email</label><br>
+						<input type="email" name="email" id="email"><br><br>
 						<label>Problema relatado: </label><br>
-						<textarea rows="6" cols="70" placeholder="Relate seu problema aqui"></textarea>
+						<textarea rows="6" cols="70" placeholder="Relate seu problema aqui" id="msg" name="msg"></textarea>
 						<br><br><br>
 						<input type="hidden" value='<%u.getLogin();%>' name="login">
 						<input type="submit" value="Enviar">
@@ -242,6 +254,21 @@
 					</fieldset>
 				</form>	
         	</div>
+        	<script type="text/javascript">
+					$("#btnEnviar").click(function(){
+						$.ajax({
+							url : '../../ContatoSuporte',
+							type : 'POST',
+							data : "email=" + $("#msg").val() + "&email=" + $("#email").val() + "&nome=" + '<%=u.getNome()%>',
+							dataType : 'json',
+							success : function(response){
+								alert(response);
+								$("#email").val(" ");
+								$("#msg").val(" ");
+							}
+						});
+					})
+				</script>
         
        	</div>
 		

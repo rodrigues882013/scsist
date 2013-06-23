@@ -153,7 +153,7 @@
 										
 									case '2':
 										$('#form1').html(" ");
-										$('#form1').html("<br><form action='' method='post'><input type='hidden' name='demo' value='2'>Tempo Inicial:&nbsp;&nbsp;<input type='date'><br><br>Tempo Final:&nbsp;&nbsp;<input type='date'><br><br>Numero da Sala: <input type='text' name='numSala'><br><br><input type='submit' value='Gerar'></form>");
+										$('#form1').html("<br><form action='../../GeraDemonstrativo' method='post'><input type='hidden' name='demo' value='2'>Tempo Inicial:&nbsp;&nbsp;<input type='date' name='dataIni' id='dataIni'><br><br>Tempo Final:&nbsp;&nbsp;<input type='date' name='dataFim' id='dataFim'><br><br>Numero da Sala: <input type='text' name='numSala'><br><br><input type='submit' value='Gerar'></form>");
 										break;
 										
 									case '3':

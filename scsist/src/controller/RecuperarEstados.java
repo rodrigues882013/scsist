@@ -7,11 +7,18 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import communication.ArduinoCOM;
+
+import model.dao.SalaDAO;
+import model.objects.Sala;
 
 /**
  * Servlet implementation class RecuperarEstados
@@ -39,7 +46,12 @@ public class RecuperarEstados extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
-			
+			HttpSession session = request.getSession();
+			ArrayList<Sala> salas = SalaDAO.selectAll();
+			for (int i=0; i < salas.size(); i++){
+				ArduinoCOM client = ArduinoCOM.getClient(salas.get(i).getIp());
+				
+			}
 			
 		}
 		catch(Exception e){

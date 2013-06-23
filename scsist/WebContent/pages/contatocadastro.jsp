@@ -1,36 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="model.objects.Usuario"%>
 
-
-
-<%
-	Usuario u = (Usuario) session.getAttribute("usuario");
-	if (u != null){
-		String nome = u.getNome();
-%>
-
-
 <!DOCTYPE html>
 <html>
+	<%
+		String aviso = (String) session.getAttribute("aviso");
+	%>
 	<head>
 
 		<title>Gestor</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script type="text/javascript" src="../../scripts/ajax2.js"></script>
-		<script type="text/javascript" src="../../scripts/jquery.js" type="text/javascript"></script>
-		<script type="text/javascript" src="../../scripts/jquery-ui.js"></script>
-		<script type="text/javascript" src="../../scripts/jquery.validate.js" type="text/javascript"></script>
-		<script type="text/javascript" src="../../scripts/jquery-1.6.min.js"></script>
-		<script type="text/javascript" src="../../scripts/jquery.reveal.js"></script>
-		<link type="text/css" rel="stylesheet" media="all" href="../../styles/style.css"/>
-		<link type="text/css" rel="stylesheet" media="all" href="../../styles/jquery-ui.css"/>
-        <link href="../../styles/liteaccordion.css" rel="stylesheet" />
-        <script src="../../scripts/jquery.min.js"></script>
-        <script src="../../scripts/jquery.easing.1.3.js"></script>
-        <script src="../../scripts/liteaccordion.jquery.js"></script>
+		<script type="text/javascript" src="../scripts/ajax2.js"></script>
+		<script type="text/javascript" src="../scripts/jquery.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../scripts/jquery-ui.js"></script>
+		<script type="text/javascript" src="../scripts/jquery.validate.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../scripts/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="../scripts/jquery.reveal.js"></script>
+		<link type="text/css" rel="stylesheet" media="all" href="../styles/style.css"/>
+		<link type="text/css" rel="stylesheet" media="all" href="../styles/jquery-ui.css"/>
+        <link href="../styles/liteaccordion.css" rel="stylesheet" />
+        <script src="../scripts/jquery.min.js"></script>
+        <script src="../scripts/jquery.easing.1.3.js"></script>
+        <script src="../scripts/liteaccordion.jquery.js"></script>
         
 		<script type="text/javascript">
-			var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"../../scripts/SpryMenuBarDownHover.gif", imgRight:"../../scripts/SpryMenuBarRightHover.gif"});
+			var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"../scripts/SpryMenuBarDownHover.gif", imgRight:"../scripts/SpryMenuBarRightHover.gif"});
 			setInterval ("window.status = ''",10);
 		</script>
 		<script type="text/javascript">
@@ -213,51 +207,36 @@
 		<div id="corpo">	
 			<div id="menuc">
 					<div id="left-side">
-						<img src="../../images/logo4.png">
-					</div>
-					<div id="right-side">
-						<img src="../../images/avatar.gif" alt="user icon" />&ensp;
-							<a href="#" class="first"><%=u.getNome()%></a>&ensp;
-							<a href="../../EncerraAcesso">Sair</a> &emsp;
+						<img src="../images/logo4.png">
 					</div>
 			</div>
 		</div>
 		
  		<br>
+ 		<%
+ 			if (aviso != null){
+ 		%>
  		
+ 		<script>
+ 			alert(<%=aviso%>);
+ 		</script>
+ 		<%} %>
 		<div id="conteudo">
 			<br><br>
 			<div class="content" style="margin-left:39%; margin-top: -64px; ">	
-				<form method="post" action="../../CadastraUsuario" name="form2" id="form2">
+				<form method="post" action="../ContatoCadastro" name="form2" id="form2">
 					<fieldset>
-						<legend><h2>Formulário de Contato</h2></legend>
-						<input type="hidden" name="nome" id="nome" value="<%=u.getNome() %>">
+						<legend><h2>Solicitar Cadastro</h2></legend>
 						<label>Email</label><br>
 						<input type="email" name="email" id="email"><br><br>
-						<label>Problema relatado: </label><br>
-						<textarea rows="6" cols="70" placeholder="Relate seu problema aqui" id="msg" name="msg"></textarea>
+						<label>Informe os dados abaixo: </label><br>
+						<textarea rows="6" cols="70" placeholder="Nome e login" id="msg" name="msg"></textarea>
 						<br><br><br>
-						<input type="hidden" value='<%u.getLogin();%>' name="login">
-						<input type="button" value="Enviar" id="btnEnviar">
+						<input type="submit" value="Enviar" id="btnEnviar">
 						<input type="reset" value="Limpar">
-						<input type="button" value="Voltar" onClick="location.href='index.jsp'">
+						<input type="button" value="Voltar" onClick="location.href='../'">
 					</fieldset>
 				</form>	
-				<script type="text/javascript">
-					$("#btnEnviar").click(function(){
-						$.ajax({
-							url : '../../ContatoSuporte',
-							type : 'POST',
-							data : "email=" + $("#msg").val() + "&email=" + $("#email").val() + "&nome=" + '<%=u.getNome()%>',
-							dataType : 'json',
-							success : function(response){
-								alert(response);
-								$("#email").val(" ");
-								$("#msg").val(" ");
-							}
-						});
-					})
-				</script>
         	</div>
         
        	</div>
@@ -265,10 +244,3 @@
 	</div>
 			
 </html>
-
-<%
-}
-else{
-		response.sendRedirect("../../");
-}
-%>
